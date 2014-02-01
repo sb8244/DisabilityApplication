@@ -52,4 +52,9 @@ describe Submission do
     it { should_not be_valid }
   end
 
+  describe "when class_length is not an integer" do 
+    before { @submission.class_length = " " }
+    it { should_not be_valid }
+  end
+
 end
