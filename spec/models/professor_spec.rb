@@ -11,6 +11,8 @@ describe Professor do
 
   subject { @professor }
 
+  it { should be_valid }
+  
   #Tests for our fields existing
   it { should respond_to(:name) }
   it { should respond_to(:email) }
@@ -48,6 +50,14 @@ describe Professor do
       prof_with_same_email.save
     end
     it { should_not be_valid }
+  end
+
+  describe "it should save with lowercase email" do
+    before { @professor.email = @professor.email.upcase }
+    it "should be lowercase" do
+      @professor.save
+      expect(@professor.email).to eq(@professor.email.downcase)
+    end
   end
 
 end
