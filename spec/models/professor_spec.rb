@@ -40,4 +40,14 @@ describe Professor do
       end
     end
   end
+
+  describe "when email is already taken" do
+    before do
+      prof_with_same_email = @professor.dup
+      prof_with_same_email.email = @professor.email.upcase
+      prof_with_same_email.save
+    end
+    it { should_not be_valid }
+  end
+
 end
