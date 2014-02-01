@@ -19,4 +19,15 @@ describe Submission do
   subject { @submission }
 
   it { should be_valid }
+
+  it { should respond_to(:student_name) }
+  it { should respond_to(:student_email) }
+  it { should respond_to(:course_number) }
+  it { should respond_to(:start_time) }
+  it { should respond_to(:class_length) }
+  it { should respond_to(:exam_pickup) }
+  it { should respond_to(:exam_return) }
+  it { should respond_to(:reader) }
+  it { should respond_to(:scribe) }
+  it { should respond_to(:laptop) }
 end
