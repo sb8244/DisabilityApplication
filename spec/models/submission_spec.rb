@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Submission do
+
   before {
     @submission = Submission.new(
       student_name: "Student",
@@ -30,4 +31,20 @@ describe Submission do
   it { should respond_to(:reader) }
   it { should respond_to(:scribe) }
   it { should respond_to(:laptop) }
+
+  describe "when student_name is not present" do 
+    before { @submission.student_name = " " }
+    it { should_not be_valid }
+  end
+
+  describe "when student_email is not present" do 
+    before { @submission.student_email = " " }
+    it { should_not be_valid }
+  end
+
+  describe "when course_number is not present" do 
+    before { @submission.course_number = " " }
+    it { should_not be_valid }
+  end
+
 end
