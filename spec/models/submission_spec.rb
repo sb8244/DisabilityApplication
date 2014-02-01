@@ -47,4 +47,9 @@ describe Submission do
     it { should_not be_valid }
   end
 
+  describe "when start_time is not a date" do 
+    before { @submission.start_time = " " }
+    it { should_not be_valid }
+  end
+
 end
