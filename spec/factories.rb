@@ -5,7 +5,7 @@ FactoryGirl.define do
   end
 
   factory :submission do
-    student_name  "Student"
+    sequence(:student_name) { |n| "Student #{n}" }
     student_email "student@ship.edu"
     course_number "CSC411"
     start_time    DateTime.now

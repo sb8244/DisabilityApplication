@@ -1,0 +1,30 @@
+<table>
+  <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Student Email</th>
+      <th>Course</th>
+      <th>Scheduled Date</th>
+      <th>Class Length</th>
+      <th>Exam Pickup</th>
+      <th>Exam Return</th>
+      <th>Professor Name</th>
+      <th>Professor Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @submissions.each do |submission| %>
+      <tr>
+        <td><%= submission.student_name %></td>
+        <td><%= submission.student_email %></td>
+        <td><%= submission.course_number %></td>
+        <td><%= submission.start_time.to_formatted_s(:long_ordinal) %></td>
+        <td><%= submission.class_length %></td>
+        <td><%= submission.exam_pickup %></td>
+        <td><%= submission.exam_return %></td>
+        <td><%= submission.professor.name %></td>
+        <td><%= submission.professor.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
