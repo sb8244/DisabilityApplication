@@ -11,7 +11,7 @@ class Submission < ActiveRecord::Base
   validates :reader, :inclusion => {:in => [true, false]}
   validates :scribe, :inclusion => {:in => [true, false]}
   validates :laptop, :inclusion => {:in => [true, false]}
-  validates :professor, presence: true, existence: true
+  validates :professor, existence: true
 
   private
     def start_time_is_valid_datetime?

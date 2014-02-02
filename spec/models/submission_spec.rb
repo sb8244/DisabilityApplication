@@ -34,7 +34,7 @@ describe Submission do
   it { should respond_to(:laptop) }
   it { should respond_to(:professor) }
   it { should respond_to(:professor_id) }
-
+  
   it { should belong_to(:professor) }
 
   describe "when student_name is not present" do 
@@ -72,24 +72,26 @@ describe Submission do
     it { should_not be_valid }
   end
 
-  describe "when reader is not a present" do 
+  describe "when reader is not present" do 
     before { @submission.reader = "" }
     it { should_not be_valid }
   end
 
-  describe "when scribe is not a present" do 
+  describe "when scribe is not present" do 
     before { @submission.scribe = "" }
     it { should_not be_valid }
   end
 
-  describe "when laptop is not a present" do 
+  describe "when laptop is not present" do 
     before { @submission.laptop = "" }
     it { should_not be_valid }
   end
 
   describe "when professor does not exist" do
     before { @submission.professor = Professor.new(name: "test", email: "test@test.com")}
+
     it { should_not be_valid }
+
     it "is valid if professor is saved" do
       @submission.professor.save
       expect(@submission).to be_valid
