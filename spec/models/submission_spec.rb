@@ -87,4 +87,13 @@ describe Submission do
     it { should_not be_valid }
   end
 
+  describe "when professor does not exist" do
+    before { @submission.professor = Professor.new(name: "test", email: "test@test.com")}
+    it { should_not be_valid }
+    it "is valid if professor is saved" do
+      @submission.professor.save
+      expect(@submission).to be_valid
+    end
+  end
+
 end
