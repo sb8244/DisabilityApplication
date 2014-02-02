@@ -1,6 +1,6 @@
 class Submission < ActiveRecord::Base
   belongs_to :professor
-  
+
   validate :start_time_is_valid_datetime?
   validates :student_name, presence: true
   validates :student_email, presence: true
@@ -11,6 +11,7 @@ class Submission < ActiveRecord::Base
   validates :reader, :inclusion => {:in => [true, false]}
   validates :scribe, :inclusion => {:in => [true, false]}
   validates :laptop, :inclusion => {:in => [true, false]}
+  validates_presence_of :professor
 
   private
     def start_time_is_valid_datetime?

@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 20140202010843) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "submission_id"
   end
 
   create_table "submissions", force: true do |t|
@@ -34,6 +33,7 @@ ActiveRecord::Schema.define(version: 20140202010843) do
     t.boolean  "laptop"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "professor_id"
   end
 
 end

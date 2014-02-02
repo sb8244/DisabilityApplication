@@ -1,6 +1,6 @@
 class Professor < ActiveRecord::Base
   has_many :submissions
-  
+
   before_save { self.email = email.downcase }
 
   validates :name, presence: true 

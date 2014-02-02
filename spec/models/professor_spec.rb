@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe Professor do
-
+  let(:submission) { FactoryGirl.create(:submission) }
   before {
     @professor = Professor.new(
       name: "Carol Wellington",
-      email: "cawell@ship.edu"
+      email: "cawell@ship.edu",
     )
   }
 

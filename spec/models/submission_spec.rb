@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Submission do
-
+  let(:professor) { FactoryGirl.create(:professor) }
   before {
     @submission = Submission.new(
       student_name: "Student",
@@ -13,7 +13,8 @@ describe Submission do
       exam_return: "Student",
       reader: false,
       laptop: false,
-      scribe: false
+      scribe: false,
+      professor_id: professor.id
     )
   }
 
@@ -32,6 +33,9 @@ describe Submission do
   it { should respond_to(:scribe) }
   it { should respond_to(:laptop) }
   it { should respond_to(:professor) }
+  it { should respond_to(:professor_id) }
+
+  it { should belong_to(:professor) }
 
   describe "when student_name is not present" do 
     before { @submission.student_name = " " }
