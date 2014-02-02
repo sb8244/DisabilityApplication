@@ -14,7 +14,7 @@ describe Submission do
       reader: false,
       laptop: false,
       scribe: false,
-      professor_id: professor.id
+      professor: professor
     )
   }
 

@@ -68,6 +68,7 @@ describe Professor do
     it "should add a submission" do
       expect(@professor.submissions.count).to eq(0)
       @professor.submissions << submission
+      expect(@professor.submissions.size).to eq(1)
       @professor.save
       expect(@professor.submissions.count).to eq(1)
     end
@@ -76,6 +77,7 @@ describe Professor do
       expect(@professor.submissions.count).to eq(0)
       @professor.submissions << submission
       @professor.submissions << FactoryGirl.create(:submission)
+      expect(@professor.submissions.size).to eq(2)
       @professor.save
       expect(@professor.submissions.count).to eq(2)
     end
