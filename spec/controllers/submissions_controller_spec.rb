@@ -30,4 +30,15 @@ describe SubmissionsController do
 
   end
 
+  describe 'GET :show' do
+    render_views
+    before do 
+      @submission = FactoryGirl.create(:submission)
+    end
+    it "should have a form" do
+      get :show, :id => @submission.id
+      response.body.should have_selector("form")
+    end
+  end
+
 end
