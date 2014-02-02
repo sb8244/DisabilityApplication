@@ -1,28 +1,21 @@
-== README
+Introduction
+=====
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Disability Studies application for Shippensburg University which replaces
+an all paper test submission form with a web based solution
 
-Things you may want to cover:
+Installation
+=====
+Clone this with git and then run the following command in the project. Follow the installation instructions to install Ruby first: http://ruby.railstutorial.org/ruby-on-rails-tutorial-book#sec-rubygems
+    
+    bundle install
+    
+This will install all of the gem dependencies, and the application is ready to run
 
-* Ruby version
+Run Tests
+=====
+RSpec is used to test most functionality. All tests can be run via "rspec" on the command line. Before doing this, you may need to update your migrations with "rake db:migrate test"
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Run Server
+=====
+Run "rake db:migrate" to get the latest db version. Then run "rail s" to begin a server.
