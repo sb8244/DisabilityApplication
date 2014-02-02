@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Professor do
 
   let(:submission) { FactoryGirl.create(:submission) }
-  
+
   before {
     @professor = Professor.new(
       name: "Carol Wellington",
@@ -98,6 +98,24 @@ describe Professor do
       @professor.email = "cawell@ship.edu"
       @professor.save
       expect(Professor.like_email("ship.edu").count).to eq(1)
+    end
+  end
+
+  describe "fuzzy name matching" do
+    it "should match the beginning of a name" do
+      @professor.name = "Carol Wellington"
+      @professor.save
+      expect(Professor.like_name("Car").count).to eq(1)
+    end
+    it "should match the middle of a name" do
+      @professor.name = "Carol Wellington"
+      @professor.save
+      expect(Professor.like_name("Wel").count).to eq(1)
+    end
+    it "should match the beginning of a name" do
+      @professor.name = "Carol Wellington"
+      @professor.save
+      expect(Professor.like_name("gton").count).to eq(1)
     end
   end
 end
