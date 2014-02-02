@@ -1,21 +1,19 @@
-Introduction
-=====
+=== Introduction
 
-Disability Studies application for Shippensburg University which replaces
-an all paper test submission form with a web based solution
+Disability Studies application for Shippensburg University which replaces an all paper test submission form with a web based solution
 
-Installation
-=====
+=== Installation
+
 Clone this with git and then run the following command in the project. Follow the installation instructions to install Ruby first: http://ruby.railstutorial.org/ruby-on-rails-tutorial-book#sec-rubygems
     
     bundle install
     
 This will install all of the gem dependencies, and the application is ready to run
 
-Run Tests
-=====
+=== Run Tests
+
 RSpec is used to test most functionality. All tests can be run via "rspec" on the command line. Before doing this, you may need to update your migrations with "rake db:migrate test"
 
-Run Server
-=====
+=== Run Server
+
 Run "rake db:migrate" to get the latest db version. Then run "rail s" to begin a server.
