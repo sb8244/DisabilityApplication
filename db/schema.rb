@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140201224938) do
+ActiveRecord::Schema.define(version: 20140202010843) do
 
   create_table "professors", force: true do |t|
     t.string   "name"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "submission_id"
   end
 
   create_table "submissions", force: true do |t|

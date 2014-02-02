@@ -31,6 +31,7 @@ describe Submission do
   it { should respond_to(:reader) }
   it { should respond_to(:scribe) }
   it { should respond_to(:laptop) }
+  it { should respond_to(:professor) }
 
   describe "when student_name is not present" do 
     before { @submission.student_name = " " }
@@ -54,6 +55,31 @@ describe Submission do
 
   describe "when class_length is not an integer" do 
     before { @submission.class_length = " " }
+    it { should_not be_valid }
+  end
+
+  describe "when exam_pickup is not present" do 
+    before { @submission.exam_pickup = " " }
+    it { should_not be_valid }
+  end
+
+  describe "when exam_return is not present" do 
+    before { @submission.exam_return = " " }
+    it { should_not be_valid }
+  end
+
+  describe "when reader is not a present" do 
+    before { @submission.reader = "" }
+    it { should_not be_valid }
+  end
+
+  describe "when scribe is not a present" do 
+    before { @submission.scribe = "" }
+    it { should_not be_valid }
+  end
+
+  describe "when laptop is not a present" do 
+    before { @submission.laptop = "" }
     it { should_not be_valid }
   end
 

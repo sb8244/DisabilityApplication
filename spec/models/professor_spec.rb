@@ -12,10 +12,13 @@ describe Professor do
   subject { @professor }
 
   it { should be_valid }
-  
+
   #Tests for our fields existing
   it { should respond_to(:name) }
   it { should respond_to(:email) }
+  it { should respond_to(:submissions) }
+
+  it { should have_many(:submissions) }
 
   describe "when name is not present" do
     before { @professor.name = " " }
