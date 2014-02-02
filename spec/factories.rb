@@ -15,6 +15,8 @@ FactoryGirl.define do
     reader        false
     laptop        false
     scribe        false
-    association :professor, factory: :professor
+    #This needs to do find or create in order to prevent uniquness 
+    #issues with the professor email
+    professor { Professor.find_or_create_by(name: "Carol Wellington") }
   end
 end

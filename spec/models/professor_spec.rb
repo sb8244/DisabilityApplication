@@ -16,9 +16,6 @@ describe Professor do
   #Tests for our fields existing
   it { should respond_to(:name) }
   it { should respond_to(:email) }
-  it { should respond_to(:submissions) }
-
-  it { should have_many(:submissions) }
 
   describe "when name is not present" do
     before { @professor.name = " " }
@@ -61,6 +58,28 @@ describe Professor do
       @professor.save
       expect(@professor.email).to eq(@professor.email.downcase)
     end
+  end
+
+  describe "adding submissions" do
+
+    it { should respond_to(:submissions) }
+    it { should have_many(:submissions) }
+
+    it "should add a submission" do
+      expect(@professor.submissions.count).to eq(0)
+      @professor.submissions << submission
+      @professor.save
+      expect(@professor.submissions.count).to eq(1)
+    end
+
+    it "should add many submissions" do
+      expect(@professor.submissions.count).to eq(0)
+      @professor.submissions << submission
+      @professor.submissions << FactoryGirl.create(:submission)
+      @professor.save
+      expect(@professor.submissions.count).to eq(2)
+    end
+
   end
 
 end
