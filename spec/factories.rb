@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :professor do
     name     "Carol Wellington"
-    email    "cawell@ship.edu"
+    sequence(:email){|n| "user#{n}@factory.com" }
   end
 
   factory :submission do
@@ -15,8 +15,6 @@ FactoryGirl.define do
     reader        false
     laptop        false
     scribe        false
-    #This needs to do find or create in order to prevent uniquness 
-    #issues with the professor email
-    professor { Professor.find_or_create_by(name: "Carol Wellington") }
+    professor
   end
 end
