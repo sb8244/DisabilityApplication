@@ -3,9 +3,9 @@ class ProfessorController < ApplicationController
 
   # Gets a list of professors either like name, like email, or all
   def list
-    if(params[:name])
+    if params[:name] 
       @professors = Professor.like_name(params[:name])
-    elsif(params[:email])
+    elsif params[:email]
       @professors = Professor.like_email(params[:email])
     else
       @professors = Professor.all
@@ -16,5 +16,21 @@ class ProfessorController < ApplicationController
       format.html
     end
   end
+
+=begin This should happen when a submission is saved if the professor does not exist
+  def create
+    @professor = Professor.new(professor_params)
+    if @professor.save
+      redirect_to @professor
+    else
+      render action: 'new'
+    end
+  end
+=end
+
+  private
+    def professor_params
+      params.require(:professor).permit(:name, :email)
+    end
 
 end
