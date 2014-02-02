@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe Professor do
+
   let(:submission) { FactoryGirl.create(:submission) }
+  
   before {
     @professor = Professor.new(
       name: "Carol Wellington",
@@ -13,7 +15,6 @@ describe Professor do
 
   it { should be_valid }
 
-  #Tests for our fields existing
   it { should respond_to(:name) }
   it { should respond_to(:email) }
 
