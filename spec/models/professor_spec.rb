@@ -105,7 +105,7 @@ describe Professor do
     it "should match the beginning of a name" do
       @professor.name = "Carol Wellington"
       @professor.save
-      expect(Professor.like_name("Car").count).to eq(1)
+      expect(Professor.like_name("car").count).to eq(1)
     end
     it "should match the middle of a name" do
       @professor.name = "Carol Wellington"

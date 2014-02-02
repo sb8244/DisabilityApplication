@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :professor do
-    name     "Carol Wellington"
+    sequence(:name){|n| "Carol #{n} Wellington"}
     sequence(:email){|n| "user#{n}@factory.com" }
   end
 

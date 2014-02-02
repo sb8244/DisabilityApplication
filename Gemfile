@@ -38,6 +38,8 @@ group :test do
   gem 'rspec-rails'
   gem 'shoulda'
   gem 'factory_girl_rails'
+  gem 'selenium-webdriver'
+  gem 'capybara'
 end
 
 # Use ActiveModel has_secure_password
