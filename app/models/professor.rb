@@ -3,6 +3,7 @@ class Professor < ActiveRecord::Base
 
   before_save { self.email = email.downcase }
 
+  # Does this introduce a sql injection issue because email/name wrapped in a string?
   scope :like_email, ->(email) { where("email LIKE ?", "%#{email}%") }
   scope :like_name,  ->(name)  { where("name LIKE ?", "%#{name}%") }
 
