@@ -61,7 +61,6 @@ describe Professor do
   end
 
   describe "adding submissions" do
-
     it { should respond_to(:submissions) }
     it { should have_many(:submissions) }
 
@@ -81,7 +80,23 @@ describe Professor do
       @professor.save
       expect(@professor.submissions.count).to eq(2)
     end
-
   end
 
+  describe "fuzzy email matching" do
+    it "should match the beginning of an email" do
+      @professor.email = "cawell@ship.edu"
+      @professor.save
+      expect(Professor.like_email("cawell").count).to eq(1)
+    end
+    it "should match the middle of an email" do
+      @professor.email = "cawell@ship.edu"
+      @professor.save
+      expect(Professor.like_email("wel").count).to eq(1)
+    end
+    it "should match the end of an email" do
+      @professor.email = "cawell@ship.edu"
+      @professor.save
+      expect(Professor.like_email("ship.edu").count).to eq(1)
+    end
+  end
 end
