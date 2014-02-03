@@ -33,4 +33,8 @@ DisabilityApp::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  RSpec.configure do |config|
+    config.include RSpec::TagMatchers
+  end
 end

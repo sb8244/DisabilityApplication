@@ -40,6 +40,7 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'selenium-webdriver'
   gem 'capybara'
+  gem 'rspec-tag_matchers'
 end
 
 # Use ActiveModel has_secure_password

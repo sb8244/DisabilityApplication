@@ -101,6 +101,8 @@ GEM
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
+    rspec-tag_matchers (0.1.2)
+      nokogiri
     rubyzip (0.9.9)
     sass (3.2.14)
     sass-rails (4.0.1)
@@ -162,6 +164,7 @@ DEPENDENCIES
   jquery-rails
   rails (= 4.0.2)
   rspec-rails
+  rspec-tag_matchers
   sass-rails (~> 4.0.0)
   sdoc
   selenium-webdriver

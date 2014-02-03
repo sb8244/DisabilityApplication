@@ -1,3 +1,41 @@
-<%= form_for @submission do |form| %>
+<%= form_for @submission do |f| %>
 
+  <div class='form-controls'>
+    <%= f.label :student_name %>:
+    <%= f.text_field :student_name %>
+  </div>
+
+  <div class='form-controls'>
+    <%= f.label :student_email %>:
+    <%= f.text_field :student_email %>
+  </div>
+
+  <div class='form-controls'>
+    <%= f.label :course_number %>:
+    <%= f.text_field :course_number %>
+  </div>
+
+  <div class='form-controls'>
+    <%= f.label :start_time %>:
+    <%= f.text_field :start_time %>
+  </div>
+
+  <div class='form-controls'>
+    <%= f.label :class_length %>:
+    <%= f.text_field :class_length %>
+  </div>
+
+  <div class='form-controls'>
+    <%= f.label :exam_pickup %>:
+    <%= f.text_field :exam_pickup %>
+  </div>
+
+  <div class='form-controls'>
+    <%= f.label :exam_return %>:
+    <%= f.text_field :exam_return %>
+  </div>
+
+  <div class='form-controls'>
+    <%= f.submit "Save" %>
+  </div>
 <% end %>
