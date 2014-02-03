@@ -1,5 +1,19 @@
 === Introduction
 
+=== Active TODO List
+
+[ ] Remove a submission from the main list
+[ ] Saving a submission / tested
+[ ] New submission / tested
+[ ] List submissions by date
+[ ] Paginate by date so that all submissions on a date are on the same screen
+[ ] Professor integrated to submission forms
+[ ] Professor integration allows for smart matching of name or email
+[ ] Professor name / email are linked together (clicking one fills in the other)
+[ ] View all professors and their submissions
+[ ] Reader / scribe / laptop for a submission (new, show, list)
+
+
 Disability Studies application for Shippensburg University which replaces an all paper test submission form with a web based solution
 
 === Installation
