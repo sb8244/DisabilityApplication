@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 gem 'validates_email_format_of'
 gem 'validates_existence'
+gem 'bootstrap-sass'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
@@ -41,6 +42,10 @@ group :test, :development do
   gem 'selenium-webdriver'
   gem 'capybara'
   gem 'rspec-tag_matchers'
+end
+
+group :development do
+  gem 'rails_layout'
 end
 
 # Use ActiveModel has_secure_password
