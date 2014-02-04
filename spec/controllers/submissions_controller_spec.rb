@@ -87,10 +87,27 @@ describe SubmissionsController do
       it "renders the show page when update_attributes fails" do
         mock = mock_model(Submission, :id => @submission)
         mock.stub(:update_attributes).and_return(false)
-        Submission.stub(:find).with(@submission[:id].to_s).and_return(mock)
+        Submission.stub(:find).with(@submission.id.to_s).and_return(mock)
         put :update, {id: @submission, submission: @submission.attributes}
         expect(response).to render_template(:show)
       end
     end
+  end
+
+  describe 'DELETE :destroy' do
+    before do
+      @submission = FactoryGirl.create(:submission)
+    end
+    before(:each) { delete :destroy, :id => @submission.id }
+
+    it "assigns @submission to the submission" do
+      assigns(:submission).should eq(@submission)
+    end
+
+    it "destroys the @submission resource" do
+      assigns(:submission).should be_destroyed
+    end
+
+    it { should redirect_to :action => :index }
   end
 end

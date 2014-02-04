@@ -10,6 +10,10 @@ class SubmissionsController < ApplicationController
   end
 
   def destroy
+    @submission = Submission.find(params[:id])
+    @submission.destroy
+    flash[:notice] = "Submission #{params[:id]} deleted"
+    redirect_to :action => :index
   end
 
   def show
