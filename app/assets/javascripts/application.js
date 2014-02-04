@@ -15,3 +15,20 @@
 //= require turbolinks
 //= require bootstrap
 //= require_tree .
+
+(function($) {
+  $(document).ready(function() {
+    $("#submission_professor_name").keyup(function() {
+      var val = $(this).val();
+      $.get("/professors/list?name=" + val, function(res) {
+        console.log(res);
+      });
+    });
+    $("#submission_professor_email").keyup(function() {
+      var val = $(this).val();
+      $.get("/professors/list?email=" + val, function(res) {
+        console.log(res);
+      });
+    });
+  });
+})(jQuery);
