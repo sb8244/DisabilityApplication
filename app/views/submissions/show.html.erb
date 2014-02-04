@@ -1,7 +1,18 @@
-<%= form_for @submission, :html => { :class => "form" } do |f| %>
-  
+<div class='row'>
+<%= form_for @submission, :html => { :class => "form no-width no-float" } do |f| %>
   <%= render :partial => "form_errors", :locals => { :model => @submission } %>
+
+  <div class='col-sm-6'>
+  <%= f.fields_for @submission.professor do |prof_f| %>
+    <%= render :partial => "professor_form", :locals => { :f => prof_f } %>
+  <% end %>
+  <br><br>
+  <%= render :partial => "student_form", :locals => { :f => f } %>
+  <br><br>
+  </div>
+
+  <div class='col-sm-6'>
   <%= render :partial => "submission_form", :locals => { :f => f } %>
   <%= render :partial => "form_buttons", :locals => { :f => f, :path => submissions_path } %>
-
 <% end %>
+</div>
