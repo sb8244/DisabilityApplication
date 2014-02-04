@@ -30,7 +30,7 @@ describe SubmissionsController do
     end
   end
 
-  describe 'GET :show' do
+  describe 'POST :show' do
     render_views
 
     before(:each) { get :show, :id => FactoryGirl.create(:submission).id }
@@ -44,7 +44,41 @@ describe SubmissionsController do
     it { should have_input.for(:submission => :class_length) }
     it { should have_input.for(:submission => :exam_pickup) }
     it { should have_input.for(:submission => :exam_return) }
+    it { should have_input.for(:submission => :reader) }
+    it { should have_input.for(:submission => :scribe) }
+    it { should have_input.for(:submission => :laptop) }
     it { should have_selector("input[type='submit']") } 
   end
 
+  describe 'POST :update' do
+    before do
+      @submission = FactoryGirl.create(:submission)
+      FactoryGirl.create(:submission)
+    end
+
+    context "with valid params" do 
+      before(:each) do
+        put :update, {id: @submission, submission: @submission.attributes}
+      end
+      it "assigns an updated submission as @submission" do
+        assigns(:submission).should eq(@submission)
+      end
+      it "saves the newly created professor" do
+        assigns(:submission).should be_persisted
+      end
+      it "redirects to the newly created professor" do
+        response.should redirect_to(@submission)
+      end
+    end
+
+    context "with invalid params" do
+      it "renders the show page when update_attributes fails" do
+        mock = mock_model(Submission, :id => @submission)
+        mock.stub(:update_attributes).and_return(false)
+        Submission.stub(:find).with(@submission[:id].to_s).and_return(mock)
+        put :update, {id: @submission, submission: @submission.attributes}
+        expect(response).to render_template(:show)
+      end
+    end
+  end
 end

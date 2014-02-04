@@ -34,6 +34,21 @@
     <%= f.text_field :exam_return, :class => 'form-control' %>
   </div>
 
+  <div class='checkbox'>
+    <%= f.label :reader %>
+    <%= f.check_box :reader %>
+  </div>
+
+  <div class='checkbox'>
+    <%= f.label :scribe %>
+    <%= f.check_box :scribe %>
+  </div>
+
+  <div class='checkbox'>
+    <%= f.label :laptop %>
+    <%= f.check_box :laptop %>
+  </div>
+
   <div class='form-controls'>
     <label></label>
     <%= f.submit "Save", :class => 'btn btn-primary btn-block' %>
