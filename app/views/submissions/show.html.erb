@@ -1,5 +1,6 @@
 <%= form_for @submission, :html => { :class => "form" } do |f| %>
   
+  <%= render :partial => "form_errors", :locals => { :model => @submission } %>
   <%= render :partial => "submission_form", :locals => { :f => f } %>
 
   <div class='form-controls'>
