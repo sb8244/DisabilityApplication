@@ -1,61 +1,6 @@
 <%= form_for @submission, :html => { :class => "form" } do |f| %>
-  <% if @submission.errors.any? %>
-    <div class="errors">
-      <% @submission.errors.full_messages.each do |msg| %>
-        <p class='alert alert-danger'><%= msg %></p>
-      <% end %>
-    </div>
-  <% end %>
-
-  <div class='form-controls'>
-    <%= f.label :student_name %>
-    <%= f.text_field :student_name, :class => 'form-control' %>
-  </div>
-
-  <div class='form-controls'>
-    <%= f.label :student_email %>
-    <%= f.text_field :student_email, :class => 'form-control' %>
-  </div>
-
-  <div class='form-controls'>
-    <%= f.label :course_number %>
-    <%= f.text_field :course_number, :class => 'form-control' %>
-  </div>
-
-  <div class='form-controls'>
-    <%= f.label :start_time %>
-    <%= f.text_field :start_time, :class => 'form-control' %>
-  </div>
-
-  <div class='form-controls'>
-    <%= f.label :class_length %>
-    <%= f.text_field :class_length, :class => 'form-control' %>
-  </div>
-
-  <div class='form-controls'>
-    <%= f.label :exam_pickup %>
-    <%= f.text_field :exam_pickup, :class => 'form-control' %>
-  </div>
-
-  <div class='form-controls'>
-    <%= f.label :exam_return %>
-    <%= f.text_field :exam_return, :class => 'form-control' %>
-  </div>
-
-  <div class='checkbox'>
-    <%= f.label :reader %>
-    <%= f.check_box :reader %>
-  </div>
-
-  <div class='checkbox'>
-    <%= f.label :scribe %>
-    <%= f.check_box :scribe %>
-  </div>
-
-  <div class='checkbox'>
-    <%= f.label :laptop %>
-    <%= f.check_box :laptop %>
-  </div>
+  
+  <%= render :partial => "submission_form", :locals => { :f => f } %>
 
   <div class='form-controls'>
     <label></label>
