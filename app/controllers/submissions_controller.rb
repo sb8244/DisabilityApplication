@@ -19,9 +19,10 @@ class SubmissionsController < ApplicationController
   def update
     @submission = Submission.find(params[:id])
     if @submission.update_attributes(submission_params)
+      flash[:notice] = "Submission updated successfully"
       redirect_to @submission
     else
-      render 'show'
+      render :show
     end
   end
 

@@ -1,4 +1,12 @@
 <%= form_for @submission, :html => { :class => "form" } do |f| %>
+  <% if @submission.errors.any? %>
+    <div class="errors">
+      <% @submission.errors.full_messages.each do |msg| %>
+        <p class='alert alert-danger'><%= msg %></p>
+      <% end %>
+    </div>
+  <% end %>
+
   <div class='form-controls'>
     <%= f.label :student_name %>:
     <%= f.text_field :student_name, :class => 'form-control' %>

@@ -30,7 +30,7 @@ describe SubmissionsController do
     end
   end
 
-  describe 'POST :show' do
+  describe 'GET :show' do
     render_views
 
     before(:each) { get :show, :id => FactoryGirl.create(:submission).id }
@@ -48,6 +48,18 @@ describe SubmissionsController do
     it { should have_input.for(:submission => :scribe) }
     it { should have_input.for(:submission => :laptop) }
     it { should have_selector("input[type='submit']") } 
+    it { should_not have_selector(".errors") }
+
+    it "should display errors if any" do
+      errors = double(:full_messages => ['error message', 'error 2'], :any? => true)
+      mock = mock_model(Submission, :id => "1", :errors => errors)
+      Submission.stub(:find).with("1").and_return(mock)
+      get :show, :id => "1"
+      subject.should have_selector(".errors")
+      subject.should =~ /error message/
+      subject.should =~ /error 2/
+    end
+
   end
 
   describe 'POST :update' do
