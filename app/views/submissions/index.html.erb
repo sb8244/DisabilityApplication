@@ -30,7 +30,7 @@
         <td><%= submission.professor.email %></td>
         <td><%= link_to "Edit", submission_path(submission) %></td>
         <td><%= link_to "Remove", submission_path(submission),
-            :confirm => "Are you sure?", :method => :delete %></td>
+            :data => {confirm: "Are you sure?"}, :method => :delete %></td>
       </tr>
     <% end %>
   </tbody>
