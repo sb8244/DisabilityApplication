@@ -1,6 +1,9 @@
 class SubmissionsController < ApplicationController
   def index
-    @submissions = Submission.all
+    # Grab a date that is either today or the date passed in
+    @date = Date.today
+    @date = Date.parse(params[:date]) unless params[:date].blank?
+    @submissions = Submission.where(start_time: @date.beginning_of_day..@date.end_of_day)
   end
 
   def create

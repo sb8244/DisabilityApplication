@@ -11,7 +11,9 @@ Submission.destroy_all
 Professor.destroy_all
 
 #Create a number of submissions
-10.times { FactoryGirl.create(:submission) }
+10.times { 
+  sub = FactoryGirl.create(:submission)
+}
 
 #Set some of the submissions to have the same professor
 professor = Submission.first.professor
