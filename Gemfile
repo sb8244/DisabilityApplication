@@ -51,6 +51,7 @@ end
 group :production do
   # database in production is postgres
   gem 'pg'
+  gem 'rails_12factor'
 end
 
 # Use ActiveModel has_secure_password
