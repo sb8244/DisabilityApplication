@@ -6,9 +6,6 @@ gem 'validates_email_format_of'
 gem 'validates_existence'
 gem 'bootstrap-sass'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
-
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
@@ -42,10 +39,17 @@ group :test, :development do
   gem 'selenium-webdriver'
   gem 'capybara'
   gem 'rspec-tag_matchers'
+  # database in development/test is sqlite
+  gem 'sqlite3'
 end
 
 group :development do
   gem 'rails_layout'
+end
+
+group :production do
+  # database in production is postgres
+  gem 'pg'
 end
 
 # Use ActiveModel has_secure_password
