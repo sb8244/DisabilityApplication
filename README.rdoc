@@ -1,9 +1,13 @@
 === Introduction
 
+=== Working on
+
+[ ] Professor integration allows for smart matching of name or email
+
 === Active TODO List
 
-[ ] Remove a submission from the main list
-[ ] Saving a submission / tested
+[X] Remove a submission from the main list
+[X] Saving a submission / tested
 [ ] New submission / tested
 [ ] List submissions by date
 [ ] Paginate by date so that all submissions on a date are on the same screen
