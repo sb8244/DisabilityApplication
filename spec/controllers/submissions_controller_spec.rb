@@ -65,6 +65,7 @@ describe SubmissionsController do
   end
 
   describe 'POST :update' do
+    let(:professor_attributes) { {professor: FactoryGirl.attributes_for(:professor)} }
     before do
       @submission = FactoryGirl.create(:submission)
       FactoryGirl.create(:submission)
@@ -72,7 +73,7 @@ describe SubmissionsController do
 
     context "with valid params" do 
       before(:each) do
-        put :update, {id: @submission, submission: @submission.attributes}
+        put :update, { id: @submission, submission: @submission.attributes.merge(professor_attributes) }
       end
       it "assigns an updated submission as @submission" do
         assigns(:submission).should eq(@submission)
@@ -87,10 +88,18 @@ describe SubmissionsController do
 
     context "with invalid params" do
       it "renders the show page when update_attributes fails" do
-        mock = mock_model(Submission, :id => @submission)
-        mock.stub(:update_attributes).and_return(false)
-        Submission.stub(:find).with(@submission.id.to_s).and_return(mock)
-        put :update, {id: @submission, submission: @submission.attributes}
+        @submission.student_email = ""
+        put :update, {id: @submission, submission: @submission.attributes.merge(professor_attributes)}
+        expect(response).to render_template(:show)
+      end
+      it "renders error when professor name is empty" do
+        professor_attributes[:professor][:name] = ""
+        put :update, {id: @submission, submission: @submission.attributes.merge(professor_attributes)}
+        expect(response).to render_template(:show)
+      end
+      it "renders error when professor email is empty" do
+        professor_attributes[:professor][:email] = ""
+        put :update, {id: @submission, submission: @submission.attributes.merge(professor_attributes)}
         expect(response).to render_template(:show)
       end
     end
