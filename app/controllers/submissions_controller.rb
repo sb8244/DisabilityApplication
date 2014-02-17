@@ -4,6 +4,8 @@ class SubmissionsController < ApplicationController
     @date = Date.today
     @date = Date.parse(params[:date]) unless params[:date].blank?
     @submissions = Submission.where(start_time: @date.beginning_of_day..@date.end_of_day)
+    @previous_day = @date.advance(days: -1)
+    @next_day = @date.advance(days: 1)
   end
 
   def create

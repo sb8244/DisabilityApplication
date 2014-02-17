@@ -35,8 +35,9 @@ describe SubmissionsController do
     describe "with date" do
       before { @submissions_list[0].start_time + 1.days }
       before(:each) { get :index, format: "html", date: Date.today }
-
       it { expect(assigns(:date)).to eq(Date.today) }
+      it { expect(assigns(:next_day)).to eq(Date.today + 1.days)}
+      it { expect(assigns(:previous_day)).to eq(Date.today - 1.days)}
 
     end
 
