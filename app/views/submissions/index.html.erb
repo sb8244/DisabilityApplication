@@ -37,9 +37,16 @@
         <td><%= submission.exam_return %></td>
         <td><%= submission.professor.name %></td>
         <td><%= submission.professor.email %></td>
-        <td><%= link_to "Edit", submission_path(submission) %></td>
-        <td><%= link_to "Remove", submission_path(submission),
-            :data => {confirm: "Are you sure?"}, :method => :delete %></td>
+        <td>
+          <%= link_to submission_path(submission) do %>
+          <i class='glyphicon glyphicon-edit'></i> Edit
+          <% end %>
+        </td>
+        <td>
+          <%= link_to submission_path(submission), :data => {confirm: "Are you sure?"}, :method => :delete do %>
+          <i class='glyphicon glyphicon-remove'></i> Remove
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
