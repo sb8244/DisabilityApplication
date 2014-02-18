@@ -27,16 +27,18 @@ class SubmissionsController < ApplicationController
 
   def update
     @submission = Submission.find(params[:id])
-    begin
-      professor_saver = ProfessorSaver.new(professor_params)
-      @submission.professor = professor_saver.get_professor
-    rescue 
+
+    professor = ProfessorSaver.new(professor_params).get_professor
+    if professor.save
+      @submission.professor = professor
+      professor_success = true
+    else
       @submission.errors.add(:professor, "email is required") if professor_params[:email].empty?
       @submission.errors.add(:professor, "name is required") if professor_params[:name].empty?
-      return render :show
-    end
+      professor_success = false
+    end    
 
-    if @submission.update_attributes(submission_params)
+    if professor_success && @submission.update_attributes(submission_params)
       flash[:notice] = "Submission updated successfully"
       redirect_to @submission
     else
