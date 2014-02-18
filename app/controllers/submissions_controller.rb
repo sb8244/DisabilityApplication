@@ -31,19 +31,17 @@ class SubmissionsController < ApplicationController
     professor = ProfessorSaver.new(professor_params).get_professor
     if professor.save
       @submission.professor = professor
-      professor_success = true
+      if @submission.update_attributes(submission_params)
+        flash[:notice] = "Submission updated successfully"
+        return redirect_to @submission
+      end
     else
       @submission.errors.add(:professor, "email is required") if professor_params[:email].empty?
       @submission.errors.add(:professor, "name is required") if professor_params[:name].empty?
       professor_success = false
     end    
 
-    if professor_success && @submission.update_attributes(submission_params)
-      flash[:notice] = "Submission updated successfully"
-      redirect_to @submission
-    else
-      render :show
-    end
+    render :show
   end
 
   private
