@@ -2,12 +2,12 @@ class EmailForToday
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
-  def initialize(query = Query::TodaySubmissions.new)
+  def initialize(query = Submission.today)
     @query = query
   end
 
   def perform
-    @query.find_each do |submission|
+    @query.each do |submission|
       TodaySubmissionsMailer.send(submission)
     end
   end

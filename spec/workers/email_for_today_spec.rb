@@ -3,8 +3,8 @@ require 'spec_helper'
 describe EmailForToday do
 
   it "sends no emails when there are no submissions" do
-    query = Query::TodaySubmissions.new
-    query.should_receive(:find_each).once
+    query = Submission.today
+    query.should_receive(:each).once
 
     TodaySubmissionsMailer.should_not_receive(:send)
     EmailForToday.new(query).perform
@@ -15,9 +15,9 @@ describe EmailForToday do
     3.times do
       submissions << FactoryGirl.create(:submission)
     end
-    query = Query::TodaySubmissions.new
+    query = Submission.today
     #Yield the submissions in sequence
-    query.should_receive(:find_each).once.
+    query.should_receive(:each).once.
       and_yield(submissions[0]).
       and_yield(submissions[1]).
       and_yield(submissions[2])
