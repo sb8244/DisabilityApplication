@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe EmailForToday do
 
-  it "sends no emails when there are no submissions" do
-    query = Submission.today
-    query.should_receive(:each).once
+  before(:each) { ActionMailer::Base.deliveries.clear }
 
-    TodaySubmissionsMailer.should_not_receive(:send)
-    EmailForToday.new(query).perform
+  it "sends an email when there are no submissions" do
+    Submission.should_receive(:today).and_return([])
+    EmailForToday.new.perform
+    expect(ActionMailer::Base.deliveries.size).to eq(1)
   end
 
   it "sends X when there are X" do
@@ -15,18 +15,10 @@ describe EmailForToday do
     3.times do
       submissions << FactoryGirl.create(:submission)
     end
-    query = Submission.today
-    #Yield the submissions in sequence
-    query.should_receive(:each).once.
-      and_yield(submissions[0]).
-      and_yield(submissions[1]).
-      and_yield(submissions[2])
+    Submission.should_receive(:today).and_return(submissions)
 
-    #Expect the submissions are emailed in sequence
-    submissions.each do |submission|
-      TodaySubmissionsMailer.should_receive(:send).once.ordered.with(submission)
-    end
-    EmailForToday.new(query).perform
+    EmailForToday.new.perform
+    expect(ActionMailer::Base.deliveries.size).to eq(1)
   end
 
 end
