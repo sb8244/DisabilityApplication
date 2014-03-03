@@ -34,6 +34,16 @@ $border-radius-small: 0px;
   }
 }
 
+.well {
+  background: darken(whitesmoke, 5%);
+  box-shadow: none;
+  border-color: darken(whitesmoke, 15%);
+}
+
+legend {
+  border-color: darken(whitesmoke, 15%);
+}
+
 // make all images responsive by default
 img {
   @extend .img-responsive;
