@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.datepicker
+//= require jquery-ui-timepicker-addon
 //= require jquery.turbolinks
 //= require turbolinks
 //= require bootstrap
@@ -21,8 +23,9 @@
 
 $(function() {
 
-$('.datatable').dataTable({
-  "sPaginationType": "bootstrap"
-});
+  $('.datatable').dataTable({
+    sPaginationType: "bootstrap",
+    aaSorting:[]
+  });
 
 });

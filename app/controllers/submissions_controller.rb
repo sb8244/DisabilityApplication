@@ -8,10 +8,32 @@ class SubmissionsController < ApplicationController
     @next_day = @date.advance(days: 1)
   end
 
+  def all
+    @submissions = Submission.order("start_time ASC").all
+  end
+
   def create
+    @submission = Submission.new(submission_params)
+    @professor = ProfessorSaver.new(professor_params).get_professor
+    if @professor.save
+      @submission.professor = @professor
+      if @submission.save
+        flash[:notice] = "Submission created successfully"
+        return redirect_to @submission
+      end
+    else
+      @submission.professor = Professor.new
+      @submission.errors.add(:professor, "email is required") if professor_params[:email].empty?
+      @submission.errors.add(:professor, "name is required") if professor_params[:name].empty?
+      professor_success = false
+    end  
+
+    render :new
   end
 
   def new
+    @submission = Submission.new
+    @submission.professor = Professor.new
   end
 
   def destroy

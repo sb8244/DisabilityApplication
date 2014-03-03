@@ -1,41 +1,48 @@
-<%= field_set_tag 'Submission' do %>
-  <div class='form-controls'>
-    <%= f.label :course_number %>
-    <%= f.text_field :course_number, :class => 'form-control' %>
-  </div>
+<div class='well'>
+  <%= field_set_tag 'Details' do %>
+    <div class='form-controls'>
+      <%= f.label :course_number %>
+      <%= f.text_field :course_number, :class => 'form-control' %>
+    </div>
 
-  <div class='form-controls'>
-    <%= f.label :start_time %>
-    <%= f.text_field :start_time, :class => 'form-control' %>
-  </div>
+    <div class='form-controls'>
+      <%= f.label :start_time %>
+      <% if @submission.start_time %>
+      <%= text_field_tag "submission[start_time]", @submission.start_time.to_s(:db_no_seconds), 
+                          class: 'form-control', id: "submission_start_time" %>
+      <% else %>
+        <%= f.text_field :start_time, class: 'form-control' %>
+      <% end %>
+    </div>
 
-  <div class='form-controls'>
-    <%= f.label :class_length %>
-    <%= f.text_field :class_length, :class => 'form-control' %>
-  </div>
+    <div class='form-controls'>
+      <%= f.label :class_length %>
+      <%= f.text_field :class_length, :class => 'form-control' %>
+    </div>
 
-  <div class='form-controls'>
-    <%= f.label :exam_pickup %>
-    <%= f.text_field :exam_pickup, :class => 'form-control' %>
-  </div>
+    <div class='form-controls'>
+      <%= f.label :exam_pickup %>
+      <%= f.text_field :exam_pickup, :class => 'form-control' %>
+    </div>
 
-  <div class='form-controls'>
-    <%= f.label :exam_return %>
-    <%= f.text_field :exam_return, :class => 'form-control' %>
-  </div>
+    <div class='form-controls'>
+      <%= f.label :exam_return %>
+      <%= f.text_field :exam_return, :class => 'form-control' %>
+    </div>
 
-  <div class='checkbox'>
-    <%= f.label :reader %>
-    <%= f.check_box :reader %>
-  </div>
+    <div class='checkbox'>
+      <%= f.label :reader %>
+      <%= f.check_box :reader %>
+    </div>
 
-  <div class='checkbox'>
-    <%= f.label :scribe %>
-    <%= f.check_box :scribe %>
-  </div>
+    <div class='checkbox'>
+      <%= f.label :scribe %>
+      <%= f.check_box :scribe %>
+    </div>
 
-  <div class='checkbox'>
-    <%= f.label :laptop %>
-    <%= f.check_box :laptop %>
-  </div>
-<% end %>
+    <div class='checkbox'>
+      <%= f.label :laptop %>
+      <%= f.check_box :laptop %>
+    </div>
+  <% end %>
+</div>

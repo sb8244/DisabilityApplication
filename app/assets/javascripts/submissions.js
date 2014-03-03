@@ -1,3 +1,17 @@
+/*
+ * Datepicker
+ */
+(function($) {
+  $(document).ready(function() {
+    $("#submission_start_time").datetimepicker({
+      dateFormat: "yy-mm-dd"
+    });
+  });
+})(jQuery);
+
+/*
+ * Professor typeahead
+ */
 (function($) {
   $(document).ready(function() {
     var nameSource = function(query, cb) {

@@ -1,11 +1,13 @@
-<%= field_set_tag 'Professor' do %>
-  <div class='form-controls'>
-    <%= f.label :name %>
-    <%= f.text_field :name, :class => 'form-control' %>
-  </div>
+<div class='well'>
+  <%= field_set_tag 'Professor' do %>
+    <div class='form-controls'>
+      <%= f.label :name %>
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
 
-  <div class='form-controls'>
-    <%= f.label :email %>
-    <%= f.text_field :email, :class => 'form-control' %>
-  </div>
-<% end %>
+    <div class='form-controls'>
+      <%= f.label :email %>
+      <%= f.text_field :email, :class => 'form-control' %>
+    </div>
+  <% end %>
+</div>

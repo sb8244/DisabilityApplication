@@ -77,9 +77,13 @@ GEM
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-timepicker-addon-rails (1.4.1)
+      railties (>= 3.1)
     jquery-turbolinks (2.0.2)
       railties (>= 3.1.0)
       turbolinks
+    jquery-ui-rails (4.1.1)
+      railties (>= 3.1.0)
     json (1.8.1)
     mail (2.5.4)
       mime-types (~> 1.16)
@@ -223,7 +227,9 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-datatables-rails!
   jquery-rails
+  jquery-timepicker-addon-rails
   jquery-turbolinks
+  jquery-ui-rails
   pg
   rails (= 4.0.2)
   rails_12factor
