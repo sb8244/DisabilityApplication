@@ -2,7 +2,8 @@ class EmailForToday
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
-  recurrence { daily.hour_of_day(6) }
+  # This is going as UTC for some reason, so add 5 hours to offset the EST timezone difference
+  recurrence { daily.hour_of_day(6+5) }
 
   def perform
     submissions = Submission.today
