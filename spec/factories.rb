@@ -10,8 +10,8 @@ FactoryGirl.define do
     course_number "CSC411"
     start_time    DateTime.now
     class_length  50
-    exam_pickup   "Student"
-    exam_return   "Student"
+    exam_pickup   "Professor Dropoff"
+    exam_return   "Student Pickup"
     reader        false
     laptop        false
     scribe        false

@@ -15,7 +15,7 @@ class Submission < ActiveRecord::Base
 
   scope :find_in_date, -> (beginning, ending) { where(start_time: beginning..ending) }
   scope :today, -> { find_in_date(DateTime.now.beginning_of_day, DateTime.now.end_of_day) }
-  
+
   private
     def start_time_is_valid_datetime?
       unless start_time.is_a?(ActiveSupport::TimeWithZone)

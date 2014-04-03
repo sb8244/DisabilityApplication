@@ -63,12 +63,12 @@ describe Submission do
   end
 
   describe "when exam_pickup is not present" do 
-    before { @submission.exam_pickup = " " }
+    before { @submission.exam_pickup = nil }
     it { should_not be_valid }
   end
 
   describe "when exam_return is not present" do 
-    before { @submission.exam_return = " " }
+    before { @submission.exam_return = nil }
     it { should_not be_valid }
   end
 

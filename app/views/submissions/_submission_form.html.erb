@@ -20,15 +20,37 @@
       <%= f.text_field :class_length, :class => 'form-control' %>
     </div>
 
-    <div class='form-controls'>
-      <%= f.label :exam_pickup %>
-      <%= f.text_field :exam_pickup, :class => 'form-control' %>
-    </div>
+    <%= field_set_tag 'Exam Pickup Method', class: 'pull-left width_50' do %>
+      <div class='form-controls'>
+        <%= f.radio_button :exam_pickup, "Professor Dropoff" %>
+        <%= label_tag "Professor Dropoff" %>
+      </div>
 
-    <div class='form-controls'>
-      <%= f.label :exam_return %>
-      <%= f.text_field :exam_return, :class => 'form-control' %>
-    </div>
+      <div class='form-controls'>
+        <%= f.radio_button :exam_pickup, "Student Dropoff" %>
+        <%= label_tag "Student Dropoff" %>
+      </div>
+
+      <div class='form-controls'>
+        <%= f.radio_button :exam_pickup, "Professor Email" %>
+        <%= label_tag "Professor Email" %>
+      </div>
+    <% end %>
+
+    <%= field_set_tag 'Exam Return Method' do %>
+      <div class='form-controls'>
+        <%= f.radio_button :exam_return, "Professor Pickup" %>
+        <%= label_tag "Professor Pickup" %>
+      </div>
+
+      <div class='form-controls'>
+        <%= f.radio_button :exam_return, "Student Pickup" %>
+        <%= label_tag "Student Pickup" %>
+      </div>
+    <% end %>
+
+    <!-- Fieldset is floated left so need to clear to get bottom alignment -->
+    <div class='clearfix'></div>
 
     <div class='checkbox'>
       <%= f.label :reader %>
