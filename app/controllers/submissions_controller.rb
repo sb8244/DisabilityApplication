@@ -66,10 +66,21 @@ class SubmissionsController < ApplicationController
     render :show
   end
 
+  def reschedule
+    submission = Submission.find(params[:id])
+    new_submission = submission.dup
+
+    submission.update_attributes!(cancelled: true)
+    new_submission.start_time = nil
+    new_submission.save!
+
+    redirect_to new_submission, notice: "Submission #{submission.id} was cancelled. You are rescheduling the submision now."
+  end
+
   private
     def submission_params
       params.require(:submission).permit(:student_name, :student_email, :course_number, :start_time,
-        :class_length, :exam_pickup, :exam_return, :reader, :scribe, :laptop)
+        :class_length, :exam_pickup, :exam_return, :reader, :scribe, :laptop, :laptop_reason)
     end
 
     def professor_params

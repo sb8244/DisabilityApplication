@@ -5,5 +5,11 @@
 
 <div class='form-controls'>
   <label></label>
-  <%= link_to "Cancel & Go Back", path, :class => 'btn btn-default btn-block' %>
+  <%= link_to "Cancel & Reschedule", reschedule_submission_path(@submission), 
+      class: 'btn btn-danger btn-block', method: :post %>
+</div>
+
+<div class='form-controls'>
+  <label></label>
+  <%= link_to "Go Back", path, :class => 'btn btn-default btn-block' %>
 </div>

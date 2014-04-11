@@ -21,19 +21,6 @@ describe Submission do
   subject { @submission }
 
   it { should be_valid }
-
-  it { should respond_to(:student_name) }
-  it { should respond_to(:student_email) }
-  it { should respond_to(:course_number) }
-  it { should respond_to(:start_time) }
-  it { should respond_to(:class_length) }
-  it { should respond_to(:exam_pickup) }
-  it { should respond_to(:exam_return) }
-  it { should respond_to(:reader) }
-  it { should respond_to(:scribe) }
-  it { should respond_to(:laptop) }
-  it { should respond_to(:professor) }
-  it { should respond_to(:professor_id) }
   
   it { should belong_to(:professor) }
 
@@ -49,11 +36,6 @@ describe Submission do
 
   describe "when course_number is not present" do 
     before { @submission.course_number = " " }
-    it { should_not be_valid }
-  end
-
-  describe "when start_time is not a date" do 
-    before { @submission.start_time = " " }
     it { should_not be_valid }
   end
 
