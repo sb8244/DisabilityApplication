@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140202010843) do
+ActiveRecord::Schema.define(version: 20140411024537) do
 
   create_table "professors", force: true do |t|
     t.string   "name"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20140202010843) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "professor_id"
+    t.string   "laptop_reason"
+    t.boolean  "cancelled",     default: false
   end
 
 end
