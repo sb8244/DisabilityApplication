@@ -18,4 +18,10 @@ class Submission < ActiveRecord::Base
   def start_time_formatted
     start_time ? start_time.to_formatted_s(:long_ordinal) : ""
   end
+
+  # When extended is set, removed extended_amount is extended is false
+  def extended=(val)
+    super(val)
+    self.extended_amount = nil unless val == 1
+  end
 end

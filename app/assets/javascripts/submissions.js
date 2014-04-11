@@ -6,6 +6,31 @@
     $("#submission_start_time").datetimepicker({
       dateFormat: "yy-mm-dd"
     });
+    $("#submission_class_length").on('keyup', function(e) {
+      autoSetExtendedAmount();
+    });
+    $("#submission_extended").on('change', function(e) {
+      checkExtendedCheckbox(false);
+    })
+    checkExtendedCheckbox(true);
+
+    function autoSetExtendedAmount() {
+      if($("#submission_extended").is(":checked")) {
+        var val = parseInt($("#submission_class_length").val()) * 2;
+        if(isNaN(val)) val = '';
+        $("#submission_extended_amount").val(val);
+      }
+    }
+
+    function checkExtendedCheckbox(first) {
+      if($("#submission_extended").is(":checked")) {
+        $("#submission_extended_amount").attr('disabled', null);
+        if(!first) autoSetExtendedAmount();
+      } else {
+        $("#submission_extended_amount").val("");
+        $("#submission_extended_amount").attr('disabled', 'disabled');
+      }
+    }
   });
 })(jQuery);
 

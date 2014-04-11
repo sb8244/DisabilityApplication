@@ -3,11 +3,13 @@
   <%= f.submit "Save", :class => 'btn btn-primary btn-block' %>
 </div>
 
+<% if @submission.id %>
 <div class='form-controls'>
   <label></label>
   <%= link_to "Cancel & Reschedule", reschedule_submission_path(@submission), 
       class: 'btn btn-danger btn-block', method: :post %>
 </div>
+<% end %>
 
 <div class='form-controls'>
   <label></label>
