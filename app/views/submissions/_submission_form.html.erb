@@ -70,3 +70,16 @@
     </div>
   <% end %>
 </div>
+
+<div class='well'>
+  <%= field_set_tag 'Administrative' do %>
+    <div class='checkbox'>
+      <%= f.label :cancelled %>
+      <%= f.check_box :cancelled %>
+    </div>
+    <div class='checkbox'>
+      <%= f.label :no_show %>
+      <%= f.check_box :no_show %>
+    </div>
+  <% end %>
+</div>

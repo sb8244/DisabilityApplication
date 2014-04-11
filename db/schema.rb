@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140411024537) do
+ActiveRecord::Schema.define(version: 20140411030858) do
 
   create_table "professors", force: true do |t|
     t.string   "name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140411024537) do
     t.integer  "professor_id"
     t.string   "laptop_reason"
     t.boolean  "cancelled",     default: false
+    t.boolean  "no_show",       default: false
   end
 
 end

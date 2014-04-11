@@ -116,8 +116,6 @@ describe SubmissionsController do
     it "destroys the @submission resource" do
       assigns(:submission).should be_destroyed
     end
-
-    it { should redirect_to :action => :index }
   end
 
   describe 'POST :reschedule' do

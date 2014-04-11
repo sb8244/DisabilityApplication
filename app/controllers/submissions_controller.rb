@@ -3,7 +3,7 @@ class SubmissionsController < ApplicationController
     # Grab a date that is either today or the date passed in
     @date = Date.today
     @date = Date.parse(params[:date]) unless params[:date].blank?
-    @submissions = Submission.find_in_date(@date.beginning_of_day, @date.end_of_day)
+    @submissions = Submission.find_in_date(@date.beginning_of_day, @date.end_of_day).order("start_time ASC")
     @previous_day = @date.advance(days: -1)
     @next_day = @date.advance(days: 1)
   end
@@ -40,7 +40,9 @@ class SubmissionsController < ApplicationController
     @submission = Submission.find(params[:id])
     @submission.destroy
     flash[:notice] = "Submission #{params[:id]} deleted"
-    redirect_to :action => :index
+
+    # Just go back to where we came from
+    redirect_to request.referer || :submissions
   end
 
   def show
@@ -80,7 +82,7 @@ class SubmissionsController < ApplicationController
   private
     def submission_params
       params.require(:submission).permit(:student_name, :student_email, :course_number, :start_time,
-        :class_length, :exam_pickup, :exam_return, :reader, :scribe, :laptop, :laptop_reason)
+        :class_length, :exam_pickup, :exam_return, :reader, :scribe, :laptop, :laptop_reason, :no_show)
     end
 
     def professor_params
