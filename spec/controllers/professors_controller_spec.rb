@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe ProfessorsController do
+  
+  # login to http basic auth
+  before(:each) do
+    http_login
+  end
 
   describe "GET :list" do 
     render_views

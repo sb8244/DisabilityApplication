@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe SubmissionsController do
+  # login to http basic auth
+  before(:each) do
+    http_login
+  end
+
   let(:submission) { FactoryGirl.create(:submission) }
   render_views
   describe 'GET :index' do

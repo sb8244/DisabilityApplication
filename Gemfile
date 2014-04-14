@@ -21,7 +21,7 @@ gem 'turbolinks'
 
 gem 'factory_girl_rails'
 
-gem 'sidekiq'
+gem 'sidekiq', '~> 2.17.7'
 gem 'sidetiq'
 gem 'sinatra', '>= 1.3.0', :require => nil
 
