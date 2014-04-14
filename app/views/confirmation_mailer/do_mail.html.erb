@@ -1,0 +1,26 @@
+<% content_for :header do %>
+  Exam Scheduled
+<% end %>
+<p>
+  Dear <%= @submission.professor.name %> and <%= @submission.student_name %>,<br><br>
+  An exam has been scheduled on <%= @submission.start_time_formatted %> for course <%= @submission.course_number %>.
+</p>
+<% if @submission.reader || @submission.scribe || @submission.laptop %>
+  <p>
+    The following will be provided for this exam:
+    <ul>
+      <% if @submission.reader %>
+        <li>Reader</li>
+      <% end %>
+      <% if @submission.scribe %>
+        <li>Scribe</li>
+      <% end %>
+      <% if @submission.computer %>
+        <li>Computer</li>
+      <% end %>
+    </ul>
+  </p>
+<% end %>
+<p>
+  If you have any questions or concerns, please contact the Office of Disability Services.
+</p>

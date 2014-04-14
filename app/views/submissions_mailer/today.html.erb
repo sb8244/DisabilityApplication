@@ -1,4 +1,6 @@
-<h3>Exams Scheduled for <%= @date %><h3>
+<% content_for :header do %>
+Exams Scheduled for <%= @date %>
+<% end %>
 <table border="0" cellspacing="0" cellpadding="10" style="border:1px solid #ccc;">
     <thead>
     <tr>
