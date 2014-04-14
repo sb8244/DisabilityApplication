@@ -144,6 +144,12 @@ describe SubmissionsController do
       post :reschedule, id: submission.id
       expect(response).to redirect_to(Submission.last)
     end
+
+    it "sends a mail" do
+      expect {
+        post :reschedule, id: submission.id
+      }.to change{ ActionMailer::Base.deliveries.count }.by(1)
+    end
   end
 
   describe 'POST :create' do
