@@ -3,7 +3,7 @@
 <% end %>
 <p>
   Dear <%= @submission.professor.name %> and <%= @submission.student_name %>,<br><br>
-  An exam has been scheduled on <%= @submission.start_time_formatted %> for course <%= @submission.course_number %>.
+  An exam has been scheduled on <strong><%= @submission.start_time_formatted %></strong> for course <%= @submission.course_number %>.
 </p>
 <% if @submission.reader || @submission.scribe || @submission.laptop %>
   <p>
