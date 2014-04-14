@@ -60,14 +60,13 @@ describe SubmissionsController do
 
     it "should display errors if any" do
       errors = double(:full_messages => ['error message', 'error 2'], :any? => true)
-      mock = mock_model(Submission, :id => "1", :errors => errors, :professor => FactoryGirl.create(:professor))
+      mock = mock_model(Submission, :id => "1", :errors => errors, :professor => FactoryGirl.create(:professor), mail_records: [])
       Submission.stub(:find).with("1").and_return(mock)
       get :show, :id => "1"
       subject.should have_selector(".errors")
       subject.should =~ /error message/
       subject.should =~ /error 2/
     end
-
   end
 
   describe 'POST :update' do
@@ -170,6 +169,14 @@ describe SubmissionsController do
     it "adds 2 mail records" do
       post :create, submission: submission_attributes(submission)
       expect(Submission.last.mail_records.count).to eq(2)
+    end
+  end
+
+  describe 'POST :email' do
+    it "sends mail" do
+      expect {
+        post :email, id: submission
+      }.to change{ ActionMailer::Base.deliveries.count }.by(1)
     end
   end
 
