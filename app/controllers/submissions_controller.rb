@@ -80,6 +80,12 @@ class SubmissionsController < ApplicationController
     redirect_to new_submission, notice: "Submission #{submission.id} was cancelled. You are rescheduling the submision now."
   end
 
+  def email
+    submission = Submission.find(params[:id])
+    ConfirmationMailer.do_mail(params[:id]).deliver
+    redirect_to submission, notice: "Email delivered to student and professor."
+  end
+
   private
     def submission_params
       params.require(:submission).permit(:student_name, :student_email, :course_number, :start_time,

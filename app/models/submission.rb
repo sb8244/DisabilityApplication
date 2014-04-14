@@ -1,5 +1,6 @@
 class Submission < ActiveRecord::Base
   belongs_to :professor
+  has_many :mail_records
 
   validates :student_name, presence: true
   validates :student_email, presence: true

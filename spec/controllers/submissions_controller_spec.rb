@@ -166,6 +166,11 @@ describe SubmissionsController do
         post :create, submission: submission_attributes(submission)
       }.to change{ ActionMailer::Base.deliveries.count }.by(1)
     end
+
+    it "adds 2 mail records" do
+      post :create, submission: submission_attributes(submission)
+      expect(Submission.last.mail_records.count).to eq(2)
+    end
   end
 
   def submission_attributes(submission)
