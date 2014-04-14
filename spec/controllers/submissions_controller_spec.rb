@@ -1,13 +1,10 @@
 require 'spec_helper'
 
 describe SubmissionsController do
-  # login to http basic auth
-  before(:each) do
-    http_login
-  end
-
-  let(:submission) { FactoryGirl.create(:submission) }
   render_views
+  before(:each) { http_login }
+  let(:submission) { FactoryGirl.create(:submission) }
+
   describe 'GET :index' do
     let!(:submissions_list) { [FactoryGirl.create(:submission), FactoryGirl.create(:submission)] }
 
@@ -74,7 +71,7 @@ describe SubmissionsController do
   end
 
   describe 'POST :update' do
-    let(:professor_attributes) { {professor: FactoryGirl.attributes_for(:professor)} }
+    let(:professor_attributes) { { professor: FactoryGirl.attributes_for(:professor) } }
     before { FactoryGirl.create(:submission) }
 
     context "with valid params" do 
@@ -147,5 +144,31 @@ describe SubmissionsController do
       post :reschedule, id: submission.id
       expect(response).to redirect_to(Submission.last)
     end
+  end
+
+  describe 'POST :create' do
+    let!(:submission) { FactoryGirl.create(:submission) }
+    it "creates a submission" do
+      expect {
+        post :create, submission: submission_attributes(submission)
+      }.to change{ Submission.count }.by(1)
+    end
+
+    it "creates a new professor if it doesn't exist" do
+      submission.professor.delete
+      expect {
+        post :create, submission: submission_attributes(submission)
+      }.to change{ Professor.count }.by(1)
+    end
+
+    it "sends mail" do
+      expect {
+        post :create, submission: submission_attributes(submission)
+      }.to change{ ActionMailer::Base.deliveries.count }.by(1)
+    end
+  end
+
+  def submission_attributes(submission)
+    { professor: { name: submission.professor.name, email: submission.professor.email } }.merge(submission.attributes)
   end
 end

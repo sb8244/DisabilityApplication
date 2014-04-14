@@ -18,6 +18,7 @@ class SubmissionsController < ApplicationController
     if @professor.save
       @submission.professor = @professor
       if @submission.save
+        ConfirmationMailer.do_mail(@submission.id).deliver
         flash[:notice] = "Submission created successfully"
         return redirect_to @submission
       end
