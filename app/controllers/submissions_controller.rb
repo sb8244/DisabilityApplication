@@ -77,8 +77,6 @@ class SubmissionsController < ApplicationController
     new_submission.start_time = nil
     new_submission.save!
 
-    ConfirmationMailer.do_mail(new_submission.id).deliver
-
     redirect_to new_submission, notice: "Submission #{submission.id} was cancelled. You are rescheduling the submision now."
   end
 
