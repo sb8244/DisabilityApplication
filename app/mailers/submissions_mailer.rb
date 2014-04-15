@@ -12,7 +12,7 @@ class SubmissionsMailer < ActionMailer::Base
     @color_mapping = Submission::Colorer.new(@submissions).color
 
     attachments["Submissions.xlsx"] = {mime_type: xlsx_mime, content: get_xlsx}
-    mail to: 'ada@cs.ship.edu', subject: "Today's Exams (#{@date})"
+    mail to: 'ada@cs.ship.edu', subject: "Today's Exams (#{@date})", bcc: "sb8244@cs.ship.edu"
   end
 
   def get_xlsx
