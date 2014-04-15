@@ -9,6 +9,8 @@ gem 'figaro'
 gem 'rails_email_preview', '~> 0.2.16'
 gem 'premailer-rails'
 
+gem 'axlsx'
+
 gem 'sass-rails', '~> 4.0.2'
 gem 'uglifier', '>= 1.3.0'
 gem 'bootstrap-sass'
