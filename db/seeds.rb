@@ -17,7 +17,16 @@ Professor.destroy_all
 
 #Set some of the submissions to have the same professor
 professor = Submission.first.professor
+
 #sum limit + offset to get the item number (2nd in this case)
 submission = Submission.limit(1).offset(1).first
-submission.professor = professor
-submission.save
+submission.update_attributes!(professor: professor)
+
+submission = Submission.limit(1).offset(5).first
+submission.update_attributes!(professor: professor)
+
+professor = Submission.last.professor
+submission = Submission.limit(1).offset(7).first
+submission.update_attributes!(professor: professor)
+submission = Submission.limit(1).offset(8).first
+submission.update_attributes!(professor: professor)

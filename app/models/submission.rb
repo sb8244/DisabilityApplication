@@ -20,6 +20,14 @@ class Submission < ActiveRecord::Base
     start_time ? start_time.to_formatted_s(:long_ordinal) : ""
   end
 
+  def end_time
+    if extended? && extended_amount
+      start_time + extended_amount.minutes
+    else
+      start_time + class_length.minutes
+    end
+  end
+
   # When extended is set, removed extended_amount is extended is false
   def extended=(val)
     super(val)

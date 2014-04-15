@@ -10,16 +10,19 @@
 <table class='table table-striped table-bordered datatable'>
   <thead>
     <tr>
-      <th>ID</th>
+      <th>Date</th>
+      <th>Start</th>
+      <th>Finish</th>
+      <th>Laptop</th>
+      <th>R-S</th>
       <th>Student Name</th>
       <th>Student Email</th>
-      <th>Course</th>
-      <th>Scheduled Date</th>
-      <th>Class Length</th>
-      <th>Exam Pickup</th>
       <th>Exam Return</th>
+      <th>Exam Pickup</th>
       <th>Professor Name</th>
       <th>Professor Email</th>
+      <th>Class Length</th>
+      <th>Course</th>
       <th></th>
       <th></th>
     </tr>
@@ -27,16 +30,28 @@
   <tbody>
     <% @submissions.each do |submission| %>
       <tr>
-        <td><%= submission.id %>
+        <td><%= submission.start_time.to_formatted_s(:date) %></td>
+        <td><%= submission.start_time.to_formatted_s(:time) %></td>
+        <td><%= submission.end_time.to_formatted_s(:time) %></td>
+        <td>
+          <% if submission.laptop %>
+            <%= submission.laptop_reason unless submission.laptop_reason.blank? %>
+            <%= "L" if submission.laptop_reason.blank? %>
+          <% end %>
+        </td>
+        <td>
+          <%= "R" if submission.reader %>
+          <%= "-" if submission.reader && submission.scribe %>
+          <%= "S" if submission.scribe %>
+        </td>
         <td><%= submission.student_name %></td>
         <td><%= submission.student_email %></td>
-        <td><%= submission.course_number %></td>
-        <td><%= submission.start_time_formatted %></td>
-        <td><%= submission.class_length %></td>
-        <td><%= submission.exam_pickup %></td>
         <td><%= submission.exam_return %></td>
+        <td><%= submission.exam_pickup %></td>
         <td><%= submission.professor.name %></td>
         <td><%= submission.professor.email %></td>
+        <td><%= submission.class_length %></td>
+        <td><%= submission.course_number %></td>
         <td>
           <%= link_to submission_path(submission) do %>
           <i class='glyphicon glyphicon-edit'></i> Edit
