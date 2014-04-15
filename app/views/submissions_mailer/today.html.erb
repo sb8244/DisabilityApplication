@@ -21,28 +21,9 @@ Exams Scheduled for <%= @date %>
   <tbody>
     <% @submissions.each do |submission| %>
       <tr bgcolor="<%= @color_mapping[submission] %>">
-        <td><%= submission.start_time.to_formatted_s(:date) %></td>
-        <td><%= submission.start_time.to_formatted_s(:time) %></td>
-        <td><%= submission.end_time.to_formatted_s(:time) %></td>
-        <td>
-          <% if submission.laptop %>
-            <%= submission.laptop_reason unless submission.laptop_reason.blank? %>
-            <%= "L" if submission.laptop_reason.blank? %>
-          <% end %>
-        </td>
-        <td>
-          <%= "R" if submission.reader %>
-          <%= "-" if submission.reader && submission.scribe %>
-          <%= "S" if submission.scribe %>
-        </td>
-        <td><%= submission.student_name %></td>
-        <td><%= submission.student_email %></td>
-        <td><%= submission.exam_return %></td>
-        <td><%= submission.exam_pickup %></td>
-        <td><%= submission.professor.name %></td>
-        <td><%= submission.professor.email %></td>
-        <td><%= submission.class_length %></td>
-        <td><%= submission.course_number %></td>
+        <% Submission::Renderer.render(submission) do |value| %>
+          <td><%= value %></td> 
+        <% end %>
       </tr>
     <% end %>
   </tbody>

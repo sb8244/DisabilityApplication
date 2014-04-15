@@ -25,8 +25,29 @@ submission.update_attributes!(professor: professor)
 submission = Submission.limit(1).offset(5).first
 submission.update_attributes!(professor: professor)
 
+# now set some more to have a different professor
 professor = Submission.last.professor
 submission = Submission.limit(1).offset(7).first
 submission.update_attributes!(professor: professor)
 submission = Submission.limit(1).offset(8).first
 submission.update_attributes!(professor: professor)
+
+# Let's set laptop on 1
+submission = Submission.limit(1).offset(1).first
+submission.update_attributes!(laptop: true, laptop_reason: "d2l")
+
+# R on another
+submission = Submission.limit(1).offset(2).first
+submission.update_attributes!(reader: true)
+
+# S on another
+submission = Submission.limit(1).offset(3).first
+submission.update_attributes!(scribe: true)
+
+# RS on another
+submission = Submission.limit(1).offset(4).first
+submission.update_attributes!(scribe: true, reader: true)
+
+# RSL on another
+submission = Submission.limit(1).offset(5).first
+submission.update_attributes!(scribe: true, reader: true, laptop: true)
