@@ -6,16 +6,19 @@
 <table class='table table-striped table-bordered datatable'>
   <thead>
     <tr>
-      <th>ID</th>
+      <th>Date</th>
+      <th>Start</th>
+      <th>Finish</th>
+      <th>Laptop</th>
+      <th>R-S</th>
       <th>Student Name</th>
       <th>Student Email</th>
-      <th>Course</th>
-      <th>Scheduled Date</th>
-      <th>Class Length</th>
-      <th>Exam Pickup</th>
       <th>Exam Return</th>
+      <th>Exam Pickup</th>
       <th>Professor Name</th>
       <th>Professor Email</th>
+      <th>Class Length</th>
+      <th>Course</th>
       <th></th>
       <th></th>
     </tr>
@@ -23,16 +26,9 @@
   <tbody>
     <% @submissions.each do |submission| %>
       <tr>
-        <td><%= submission.id %>
-        <td><%= submission.student_name %></td>
-        <td><%= submission.student_email %></td>
-        <td><%= submission.course_number %></td>
-        <td><%= submission.start_time_formatted %></td>
-        <td><%= submission.class_length %></td>
-        <td><%= submission.exam_pickup %></td>
-        <td><%= submission.exam_return %></td>
-        <td><%= submission.professor.name %></td>
-        <td><%= submission.professor.email %></td>
+        <% Submission::Renderer.render(submission) do |value| %>
+          <td><%= value %></td> 
+        <% end %>
         <td>
           <%= link_to submission_path(submission) do %>
           <i class='glyphicon glyphicon-edit'></i> Edit
