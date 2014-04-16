@@ -6,6 +6,9 @@ DisabilityApp::Application.routes.draw do
     get :all, on: :collection
   end
   get 'professors/list' => 'professors#list', as: :list
+
+  get 'report/semester' => 'report#index', as: :semester_report
+  post 'report/semester' => 'report#generate', as: :semester_report_generate
   
   mount RailsEmailPreview::Engine, at: 'emails'
 

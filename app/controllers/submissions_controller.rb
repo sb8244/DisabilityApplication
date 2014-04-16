@@ -89,7 +89,7 @@ class SubmissionsController < ApplicationController
   private
     def submission_params
       params.require(:submission).permit(:student_name, :student_email, :course_number, :start_time,
-        :class_length, :exam_pickup, :exam_return, :reader, :scribe, :laptop, :laptop_reason, :no_show,
+        :class_length, :exam_pickup, :exam_return, :reader, :scribe, :laptop, :laptop_reason, :no_show, :cancelled,
         :extended, :extended_amount)
     end
 

@@ -1,0 +1,26 @@
+<div>
+  <h3>Select Dates for Test Breakdown</h3>
+
+  <%= form_tag semester_report_generate_path, class: 'form' do %>
+    <div class="form-controls">
+      <%= label_tag :semester_start %>
+      <%= text_field nil, :semester_start, class: 'form-control datepicker' %>
+    </div>
+    <div class="form-controls">
+      <%= label_tag :finals_start %>
+      <%= text_field nil, :finals_start, class: 'form-control datepicker' %>
+    </div>
+    <div class="form-controls">
+      <%= label_tag :finals_end %>
+      <%= text_field nil, :finals_end, class: 'form-control datepicker' %>
+    </div>
+    <div class="form-controls">
+      <%= label_tag :description %>
+      <%= text_field nil, :description, class: 'form-control' %>
+    </div>
+    <div class="form-controls">
+      <label></label>
+      <%= submit_tag 'Generate', class: 'btn btn-primary btn-block' %>
+    </div>
+  <% end %>
+</div>
