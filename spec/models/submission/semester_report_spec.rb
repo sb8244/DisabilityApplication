@@ -75,7 +75,7 @@ describe Submission::SemesterReport do
         semester, finals = reporter.generate
 
         expect(semester[submission.start_time.to_date][:no_show]).to eq(1)
-        expect(semester[submission.start_time.to_date][:total]).to eq(1)
+        expect(semester[submission.start_time.to_date][:total]).to eq(0)
         expect(semester[submission.start_time.to_date][:regular]).to eq(1)
         expect(semester[submission.start_time.to_date][:extended]).to eq(0)
       end
@@ -89,7 +89,7 @@ describe Submission::SemesterReport do
         semester, finals = reporter.generate
 
         expect(semester[submission.start_time.to_date][:cancelled]).to eq(1)
-        expect(semester[submission.start_time.to_date][:total]).to eq(1)
+        expect(semester[submission.start_time.to_date][:total]).to eq(0)
         expect(semester[submission.start_time.to_date][:regular]).to eq(1)
         expect(semester[submission.start_time.to_date][:extended]).to eq(0)
       end

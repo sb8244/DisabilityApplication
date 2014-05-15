@@ -77,8 +77,10 @@ class Submission::SemesterReport
 
       if submission.no_show?
         report[date_key][:no_show] += 1
+        report[date_key][:total] -= 1
       elsif submission.cancelled?
         report[date_key][:cancelled] += 1
+        report[date_key][:total] -= 1
       else
         if submission.reader?
           regular = false
