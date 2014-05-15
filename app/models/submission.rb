@@ -5,7 +5,8 @@ class Submission < ActiveRecord::Base
   validates :student_name, presence: true
   validates :student_email, presence: true
   validates :course_number, presence: true
-  validates :class_length, numericality: true
+  validates :actual_test_length, numericality: true
+  validates :student_test_length, numericality: true
   validates :exam_pickup, presence: true
   validates :exam_return, presence: true
   validates :reader, :inclusion => {:in => [true, false]}
@@ -21,16 +22,6 @@ class Submission < ActiveRecord::Base
   end
 
   def end_time
-    if extended? && extended_amount
-      start_time + extended_amount.minutes
-    else
-      start_time + class_length.minutes
-    end
-  end
-
-  # When extended is set, removed extended_amount is extended is false
-  def extended=(val)
-    super(val)
-    self.extended_amount = nil unless val == 1
+    start_time + student_test_length.minutes
   end
 end

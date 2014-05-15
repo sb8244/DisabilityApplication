@@ -27,7 +27,7 @@ class SubmissionsController < ApplicationController
       @submission.errors.add(:professor, "email is required") if professor_params[:email].empty?
       @submission.errors.add(:professor, "name is required") if professor_params[:name].empty?
       professor_success = false
-    end  
+    end
 
     render :new
   end
@@ -89,8 +89,8 @@ class SubmissionsController < ApplicationController
   private
     def submission_params
       params.require(:submission).permit(:student_name, :student_email, :course_number, :start_time,
-        :class_length, :exam_pickup, :exam_return, :reader, :scribe, :laptop, :laptop_reason, :no_show, :cancelled,
-        :extended, :extended_amount)
+        :exam_pickup, :exam_return, :reader, :scribe, :laptop, :laptop_reason, :no_show, :cancelled,
+        :extended, :actual_test_length, :student_test_length)
     end
 
     def professor_params

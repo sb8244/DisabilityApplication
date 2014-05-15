@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140414201618) do
+ActiveRecord::Schema.define(version: 20140515034241) do
 
   create_table "mail_records", force: true do |t|
     t.datetime "date"
@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 20140414201618) do
     t.string   "student_email"
     t.string   "course_number"
     t.datetime "start_time"
-    t.integer  "class_length"
     t.string   "exam_pickup"
     t.string   "exam_return"
     t.boolean  "reader"
@@ -43,10 +42,11 @@ ActiveRecord::Schema.define(version: 20140414201618) do
     t.datetime "updated_at"
     t.integer  "professor_id"
     t.string   "laptop_reason"
-    t.boolean  "cancelled",       default: false
-    t.boolean  "no_show",         default: false
-    t.boolean  "extended",        default: true
-    t.integer  "extended_amount"
+    t.boolean  "cancelled",           default: false
+    t.boolean  "no_show",             default: false
+    t.boolean  "extended",            default: true
+    t.integer  "actual_test_length"
+    t.integer  "student_test_length"
   end
 
 end

@@ -21,7 +21,7 @@
       <th>Exam Pickup</th>
       <th>Professor Name</th>
       <th>Professor Email</th>
-      <th>Class Length</th>
+      <th>Testing Length</th>
       <th>Course</th>
       <th></th>
       <th></th>
@@ -31,7 +31,7 @@
     <% @submissions.each do |submission| %>
       <tr>
         <% Submission::Renderer.render(submission) do |value| %>
-          <td><%= value %></td> 
+          <td><%= value %></td>
         <% end %>
         <td>
           <%= link_to submission_path(submission) do %>

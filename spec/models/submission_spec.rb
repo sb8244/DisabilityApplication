@@ -8,7 +8,8 @@ describe Submission do
       student_email: "student@ship.edu",
       course_number: "CSC411",
       start_time: DateTime.now,
-      class_length: 50,
+      actual_test_length: 50,
+      student_test_length: 100,
       exam_pickup: "Student",
       exam_return: "Student",
       reader: false,
@@ -21,53 +22,6 @@ describe Submission do
   subject { @submission }
 
   it { should be_valid }
-  
-  it { should belong_to(:professor) }
-
-  describe "when student_name is not present" do 
-    before { @submission.student_name = " " }
-    it { should_not be_valid }
-  end
-
-  describe "when student_email is not present" do 
-    before { @submission.student_email = " " }
-    it { should_not be_valid }
-  end
-
-  describe "when course_number is not present" do 
-    before { @submission.course_number = " " }
-    it { should_not be_valid }
-  end
-
-  describe "when class_length is not an integer" do 
-    before { @submission.class_length = " " }
-    it { should_not be_valid }
-  end
-
-  describe "when exam_pickup is not present" do 
-    before { @submission.exam_pickup = nil }
-    it { should_not be_valid }
-  end
-
-  describe "when exam_return is not present" do 
-    before { @submission.exam_return = nil }
-    it { should_not be_valid }
-  end
-
-  describe "when reader is not present" do 
-    before { @submission.reader = "" }
-    it { should_not be_valid }
-  end
-
-  describe "when scribe is not present" do 
-    before { @submission.scribe = "" }
-    it { should_not be_valid }
-  end
-
-  describe "when laptop is not present" do 
-    before { @submission.laptop = "" }
-    it { should_not be_valid }
-  end
 
   describe "when professor does not exist" do
     before { @submission.professor = Professor.new(name: "test", email: "test@test.com")}

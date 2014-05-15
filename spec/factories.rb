@@ -9,7 +9,8 @@ FactoryGirl.define do
     student_email "student@ship.edu"
     course_number "CSC411"
     start_time    DateTime.now
-    class_length  50
+    actual_test_length 50
+    student_test_length  100
     exam_pickup   "Professor Dropoff"
     exam_return   "Student Pickup"
     reader        false

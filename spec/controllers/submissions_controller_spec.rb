@@ -41,7 +41,7 @@ describe SubmissionsController do
     it { should have_input.for(:submission => :student_email) }
     it { should have_input.for(:submission => :course_number) }
     it { should have_input.for(:submission => :start_time) }
-    it { should have_input.for(:submission => :class_length) }
+    it { should have_input.for(:submission => :student_test_length) }
     it { should have_input.for(:submission => :exam_pickup) }
     it { should have_input.for(:submission => :exam_return) }
     it { should have_input.for(:submission => :reader) }
@@ -141,6 +141,11 @@ describe SubmissionsController do
 
   describe 'POST :create' do
     let!(:submission) { FactoryGirl.create(:submission) }
+    it "should redirect on success" do
+      post :create, submission: submission_attributes(submission)
+      expect(response.status).to eq(302)
+    end
+
     it "creates a submission" do
       expect {
         post :create, submission: submission_attributes(submission)

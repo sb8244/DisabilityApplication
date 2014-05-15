@@ -14,7 +14,7 @@ class Submission::Renderer
     yield submission.exam_pickup
     yield submission.professor.name
     yield submission.professor.email
-    yield submission.class_length
+    yield submission.student_test_length
     yield submission.course_number
   end
 
