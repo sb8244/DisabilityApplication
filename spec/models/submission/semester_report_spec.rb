@@ -14,6 +14,7 @@ describe Submission::SemesterReport do
 
         expect(semester.count).to eq(1)
         expect(semester[submission.start_time.to_date][:extended]).to eq(0)
+        expect(semester[submission.start_time.to_date][:regular]).to eq(1)
         expect(semester[submission.start_time.to_date][:total]).to eq(1)
       end
 
@@ -75,6 +76,7 @@ describe Submission::SemesterReport do
 
         expect(semester[submission.start_time.to_date][:no_show]).to eq(1)
         expect(semester[submission.start_time.to_date][:total]).to eq(1)
+        expect(semester[submission.start_time.to_date][:regular]).to eq(1)
         expect(semester[submission.start_time.to_date][:extended]).to eq(0)
       end
 
@@ -88,6 +90,7 @@ describe Submission::SemesterReport do
 
         expect(semester[submission.start_time.to_date][:cancelled]).to eq(1)
         expect(semester[submission.start_time.to_date][:total]).to eq(1)
+        expect(semester[submission.start_time.to_date][:regular]).to eq(1)
         expect(semester[submission.start_time.to_date][:extended]).to eq(0)
       end
 
@@ -131,6 +134,7 @@ describe Submission::SemesterReport do
         semester, finals = reporter.generate
 
         expect(semester[submission.start_time.to_date][:extended]).to eq(1)
+        expect(semester[submission.start_time.to_date][:regular]).to eq(1)
         expect(semester[submission.start_time.to_date][:total]).to eq(2)
       end
 
@@ -184,6 +188,7 @@ describe Submission::SemesterReport do
 
           expect(semester_subtotal[:extended]).to eq(1)
           expect(semester_subtotal[:total]).to eq(2)
+          expect(semester_subtotal[:regular]).to eq(1)
         end
 
         it "different date" do
@@ -213,6 +218,7 @@ describe Submission::SemesterReport do
           final_subtotal = reporter.finals_subtotal
           expect(final_subtotal[:extended]).to eq(1)
           expect(final_subtotal[:total]).to eq(2)
+          expect(final_subtotal[:regular]).to eq(1)
         end
       end
     end

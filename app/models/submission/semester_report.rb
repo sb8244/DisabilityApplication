@@ -39,6 +39,7 @@ class Submission::SemesterReport
         scribe: 0,
         laptop: 0,
         extended: 0,
+        regular: 0,
         no_show: 0,
         cancelled: 0,
         total: 0
@@ -64,12 +65,14 @@ class Submission::SemesterReport
           scribe: 0,
           laptop: 0,
           extended: 0,
+          regular: 0,
           no_show: 0,
           cancelled: 0,
           total: 0
         }
       end
 
+      regular = true
       report[date_key][:total] += 1
 
       if submission.no_show?
@@ -78,6 +81,7 @@ class Submission::SemesterReport
         report[date_key][:cancelled] += 1
       else
         if submission.reader?
+          regular = false
           if submission.scribe?
             report[date_key][:reader_scribe] += 1
           else
@@ -86,6 +90,7 @@ class Submission::SemesterReport
         end
 
         if submission.laptop?
+          regular = false
           if submission.scribe?
             report[date_key][:laptop_scribe] += 1
           else
@@ -95,11 +100,15 @@ class Submission::SemesterReport
 
         if submission.scribe? && !submission.reader? && !submission.laptop?
           report[date_key][:scribe] += 1
+          regular = false
         end
 
         if submission.extended?
+          regular = false
           report[date_key][:extended] += 1
         end
       end
+
+      report[date_key][:regular] += 1 if regular
     end
 end

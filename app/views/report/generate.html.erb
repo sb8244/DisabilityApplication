@@ -9,6 +9,7 @@
       <th>Scribe</th>
       <th>Laptop</th>
       <th>Extended Time</th>
+      <th>Regular</th>
       <th>* No Show</th>
       <th>* Cancelled</th>
       <th># Tests Given</th>
@@ -24,6 +25,7 @@
         <td><%= row[:scribe] %></td>
         <td><%= row[:laptop] %></td>
         <td><%= row[:extended] %></td>
+        <td><%= row[:regular] %></td>
         <td><%= row[:no_show] %></td>
         <td><%= row[:cancelled] %></td>
         <td><%= row[:total] %></td>
@@ -37,6 +39,7 @@
       <td><%= @semester_subtotal[:scribe] %></td>
       <td><%= @semester_subtotal[:laptop] %></td>
       <td><%= @semester_subtotal[:extended] %></td>
+      <td><%= @semester_subtotal[:regular] %></td>
       <td><%= @semester_subtotal[:no_show] %></td>
       <td><%= @semester_subtotal[:cancelled] %></td>
       <td><%= @semester_subtotal[:total] %></td>
@@ -51,6 +54,7 @@
       <th>Scribe</th>
       <th>Laptop</th>
       <th>Extended Time</th>
+      <th>Regular</th>
       <th>* No Show</th>
       <th>* Cancelled</th>
       <th># Tests Given</th>
@@ -64,6 +68,7 @@
         <td><%= row[:scribe] %></td>
         <td><%= row[:laptop] %></td>
         <td><%= row[:extended] %></td>
+        <td><%= row[:regular] %></td>
         <td><%= row[:no_show] %></td>
         <td><%= row[:cancelled] %></td>
         <td><%= row[:total] %></td>
@@ -77,6 +82,7 @@
       <td><%= @finals_subtotal[:scribe] %></td>
       <td><%= @finals_subtotal[:laptop] %></td>
       <td><%= @finals_subtotal[:extended] %></td>
+      <td><%= @finals_subtotal[:regular] %></td>
       <td><%= @finals_subtotal[:no_show] %></td>
       <td><%= @finals_subtotal[:cancelled] %></td>
       <td><%= @finals_subtotal[:total] %></td>
@@ -89,6 +95,7 @@
       <td><%= @semester_subtotal[:scribe] + @finals_subtotal[:scribe] %></td>
       <td><%= @semester_subtotal[:laptop] + @finals_subtotal[:laptop] %></td>
       <td><%= @semester_subtotal[:extended] + @finals_subtotal[:extended] %></td>
+      <td><%= @semester_subtotal[:regular] + @finals_subtotal[:regular] %></td>
       <td><%= @semester_subtotal[:no_show] + @finals_subtotal[:no_show] %></td>
       <td><%= @semester_subtotal[:cancelled] + @finals_subtotal[:cancelled] %></td>
       <td><%= @semester_subtotal[:total] + @finals_subtotal[:total] %></td>
