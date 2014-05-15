@@ -39,7 +39,7 @@ class Submission::Xlsx
 
   def header_row
     ["Date", "Start", "Finish", "Laptop", "R-S", "Student Name", "Student Email", "Exam Return",
-     "Exam Pickup", "Professor Name", "Professor Email", "Class Length", "Course", "Test"]
+     "Exam Pickup", "Professor Name", "Professor Email", "Testing Length", "Course", "Test"]
   end
 
   def submission_row(submission)
