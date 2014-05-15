@@ -7,7 +7,8 @@
 </p>
 <% if @submission.reader || @submission.scribe || @submission.laptop %>
   <p>
-    The following will be provided for this exam:
+    The following will be provided for this exam. If this list does not look right, please contact the director
+    with the information at the bottom of this email.
     <ul>
       <% if @submission.reader %>
         <li>Reader</li>
@@ -15,7 +16,7 @@
       <% if @submission.scribe %>
         <li>Scribe</li>
       <% end %>
-      <% if @submission.computer %>
+      <% if @submission.laptop %>
         <li>Computer</li>
       <% end %>
     </ul>
