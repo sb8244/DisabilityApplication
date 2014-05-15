@@ -28,6 +28,9 @@ gem 'sidekiq', '~> 2.17.7'
 gem 'sidetiq'
 gem 'sinatra', '>= 1.3.0', :require => nil
 
+# Using SQLLite for database because PG is overkill
+gem 'sqlite3'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -40,17 +43,10 @@ group :test, :development do
   gem 'capybara'
   gem 'rspec-tag_matchers'
   # database in development/test is sqlite
-  gem 'sqlite3'
 end
 
 group :development do
   gem 'rails_layout'
-end
-
-group :production do
-  # database in production is postgres
-  gem 'pg'
-  gem 'rails_12factor'
 end
 
 # Use ActiveModel has_secure_password
