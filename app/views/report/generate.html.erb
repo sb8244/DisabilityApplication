@@ -11,7 +11,7 @@
       <th>Extended Time</th>
       <th>* No Show</th>
       <th>* Cancelled</th>
-      <th>TOTALS</th>
+      <th># Tests Given</th>
     </tr>
   </thead>
   <tbody>
@@ -53,7 +53,7 @@
       <th>Extended Time</th>
       <th>* No Show</th>
       <th>* Cancelled</th>
-      <th>TOTALS</th>
+      <th># Tests Given</th>
     </tr>
     <% @finals_report.each do |date, row| %>
       <tr>
@@ -92,7 +92,7 @@
       <td><%= @semester_subtotal[:no_show] + @finals_subtotal[:no_show] %></td>
       <td><%= @semester_subtotal[:cancelled] + @finals_subtotal[:cancelled] %></td>
       <td><%= @semester_subtotal[:total] + @finals_subtotal[:total] %></td>
-    </tr>  
+    </tr>
   </tbody>
 </table>
 <strong>* No-show and cancelled not counted in totals</strong>

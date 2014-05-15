@@ -1,5 +1,5 @@
 class Submission::SemesterReport
-  
+
   def initialize(start, final_start, final_end)
     @submissions = Submission.find_in_date(start, final_start)
     @finals = Submission.find_in_date(final_start, final_end)
@@ -8,7 +8,7 @@ class Submission::SemesterReport
   def generate
     @semester_report = {}
     @finals_report = {}
-    
+
     @submissions.each do |submission|
       generate_entry_for_report(@semester_report, submission)
     end
@@ -30,6 +30,7 @@ class Submission::SemesterReport
 
   private
 
+    # Given a report, sum up all entries into a total array
     def totals_for_report(report)
       total = {
         reader_scribe: 0,
@@ -52,6 +53,7 @@ class Submission::SemesterReport
       total
     end
 
+    # Add a submission to a report, hashed by date
     def generate_entry_for_report(report, submission)
       date_key = submission.start_time.to_date
       unless report.has_key?(date_key)
@@ -68,6 +70,8 @@ class Submission::SemesterReport
         }
       end
 
+      report[date_key][:total] += 1
+
       if submission.no_show?
         report[date_key][:no_show] += 1
       elsif submission.cancelled?
@@ -76,31 +80,25 @@ class Submission::SemesterReport
         if submission.reader?
           if submission.scribe?
             report[date_key][:reader_scribe] += 1
-            report[date_key][:total] += 1
           else
             report[date_key][:reader] += 1
-            report[date_key][:total] += 1
           end
         end
 
         if submission.laptop?
           if submission.scribe?
             report[date_key][:laptop_scribe] += 1
-            report[date_key][:total] += 1
           else
             report[date_key][:laptop] += 1
-            report[date_key][:total] += 1
           end
         end
 
         if submission.scribe? && !submission.reader? && !submission.laptop?
           report[date_key][:scribe] += 1
-          report[date_key][:total] += 1
         end
 
         if submission.extended?
           report[date_key][:extended] += 1
-          report[date_key][:total] += 1
         end
       end
     end
