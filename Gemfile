@@ -5,6 +5,7 @@ gem 'rails', '4.0.5'
 gem 'validates_email_format_of'
 gem 'validates_existence'
 gem 'figaro'
+gem 'newrelic_rpm'
 
 gem 'rails_email_preview', '~> 0.2.16'
 gem 'premailer-rails'
