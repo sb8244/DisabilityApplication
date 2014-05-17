@@ -1,0 +1,27 @@
+<% content_for :header do %>
+  Exam Reminder
+<% end %>
+<p>
+  Dear <%= @submission.professor.name %> and <%= @submission.student_name %>,<br><br>
+  An exam is scheduled to take place on <strong><%= @submission.start_time_formatted %></strong> for course <%= @submission.course_number %>.
+</p>
+<% if @submission.reader || @submission.scribe || @submission.laptop %>
+  <p>
+    The following will be provided for this exam. If this list does not look right, please contact the director
+    with the information at the bottom of this email.
+    <ul>
+      <% if @submission.reader %>
+        <li>Reader</li>
+      <% end %>
+      <% if @submission.scribe %>
+        <li>Scribe</li>
+      <% end %>
+      <% if @submission.laptop %>
+        <li>Computer</li>
+      <% end %>
+    </ul>
+  </p>
+<% end %>
+<p>
+  If you have any questions or concerns, please contact the Office of Disability Services.
+</p>

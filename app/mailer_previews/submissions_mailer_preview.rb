@@ -1,10 +1,9 @@
 class SubmissionsMailerPreview
   def today
-    SubmissionsMailer.today submissions
+    SubmissionsMailer.today Submission.today
   end
 
-  private
-    def submissions
-      Submission.today
-    end
+  def reminder
+    SubmissionsMailer.reminder Submission.first
+  end
 end

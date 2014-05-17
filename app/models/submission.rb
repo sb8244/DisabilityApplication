@@ -16,6 +16,7 @@ class Submission < ActiveRecord::Base
 
   scope :find_in_date, -> (beginning, ending) { where(start_time: beginning..ending) }
   scope :today, -> { find_in_date(DateTime.now.beginning_of_day, DateTime.now.end_of_day) }
+  scope :tomorrow, -> { find_in_date(DateTime.tomorrow.beginning_of_day, DateTime.tomorrow.end_of_day) }
 
   def start_time_formatted
     start_time ? start_time.to_formatted_s(:long_ordinal) : ""

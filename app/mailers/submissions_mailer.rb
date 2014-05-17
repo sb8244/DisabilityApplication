@@ -15,6 +15,12 @@ class SubmissionsMailer < ActionMailer::Base
     mail to: 'ada@cs.ship.edu', subject: "Today's Exams (#{@date})", bcc: "sb8244@cs.ship.edu"
   end
 
+  def reminder(submission)
+    @submission = submission
+
+    mail to: [submission.student_email, submission.professor.email], subject: "Exam Reminder"
+  end
+
   def get_xlsx
     renderer = Submission::Xlsx.new(@submissions)
     renderer.use_colors(@color_mapping)
