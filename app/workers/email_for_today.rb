@@ -6,6 +6,7 @@ class EmailForToday
   recurrence { daily.hour_of_day(6+5) }
 
   def perform
+    Rails.logger.info "Performing daily email reminder"
     submissions = Submission.today
     SubmissionsMailer.today(submissions).deliver
   end

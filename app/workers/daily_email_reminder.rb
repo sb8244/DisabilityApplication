@@ -8,6 +8,7 @@ class DailyEmailReminder
   recurrence { daily.hour_of_day(6+5) }
 
   def perform
+    Rails.logger.info "Performing daily email reminder"
     submissions = Submission.tomorrow # .today if you don't want it to be tomorrow, OR send both
     submissions.each do |submission|
       SubmissionsMailer.reminder(submission).deliver

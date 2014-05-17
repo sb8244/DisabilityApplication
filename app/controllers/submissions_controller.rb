@@ -61,10 +61,11 @@ class SubmissionsController < ApplicationController
         return redirect_to @submission
       end
     else
+      Rails.logger.info "Professor without email/name: #{params.to_yaml}"
       @submission.errors.add(:professor, "email is required") if professor_params[:email].empty?
       @submission.errors.add(:professor, "name is required") if professor_params[:name].empty?
       professor_success = false
-    end    
+    end
 
     render :show
   end
@@ -76,6 +77,8 @@ class SubmissionsController < ApplicationController
     submission.update_attributes!(cancelled: true)
     new_submission.start_time = nil
     new_submission.save!
+
+    Rails.logger.info "Rescheduled #{submission.id} to #{new_submission.id}"
 
     redirect_to new_submission, notice: "Submission #{submission.id} was cancelled. You are rescheduling the submision now."
   end
