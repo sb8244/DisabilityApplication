@@ -3,7 +3,8 @@ class Submission < ActiveRecord::Base
   has_many :mail_records
 
   validates :student_name, presence: true
-  validates :student_email, presence: true
+  validates :student_email, presence: true,
+            :email_format => {:message => 'is not an email'}
   validates :course_number, presence: true
   validates :actual_test_length, numericality: true
   validates :student_test_length, numericality: true

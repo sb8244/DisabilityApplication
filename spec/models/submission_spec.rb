@@ -23,6 +23,11 @@ describe Submission do
 
   it { should be_valid }
 
+  it "doesn't accept bad emails" do
+    subject.student_email = "kd6825@!ship.edu"
+    expect(subject).not_to be_valid
+  end
+
   describe "when professor does not exist" do
     before { @submission.professor = Professor.new(name: "test", email: "test@test.com")}
 

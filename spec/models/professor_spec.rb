@@ -18,6 +18,11 @@ describe Professor do
   it { should respond_to(:name) }
   it { should respond_to(:email) }
 
+  it "doesn't accept bad emails" do
+    subject.email = "ca well@ship.edu"
+    expect(subject).not_to be_valid
+  end
+
   describe "when name is not present" do
     before { @professor.name = " " }
     it { should_not be_valid }

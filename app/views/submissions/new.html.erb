@@ -1,6 +1,6 @@
 <div class='row'>
 <%= form_for @submission, :html => { :class => "form no-width no-float" } do |f| %>
-  <%= render :partial => "partials/form_errors", :locals => { :model => @submission } %>
+  <%= render :partial => "partials/form_errors", :locals => { :model => [@professor, @submission] } %>
 
   <div class='col-sm-6'>
   <%= f.fields_for @submission.professor do |prof_f| %>

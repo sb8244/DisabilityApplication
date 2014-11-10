@@ -1,7 +1,9 @@
-<% if model.errors.any? %>
-  <div class="errors">
-    <% model.errors.full_messages.uniq.each do |msg| %>
-      <p class='alert alert-danger'><%= msg %></p>
-    <% end %>
-  </div>
+<% Array(model).each do |model| %>
+  <% if model.errors.any? %>
+    <div class="errors">
+      <% model.errors.full_messages.uniq.each do |msg| %>
+        <p class='alert alert-danger'><%= "#{model.class.name} - #{msg}" %></p>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>

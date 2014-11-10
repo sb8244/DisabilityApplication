@@ -23,9 +23,9 @@ class SubmissionsController < ApplicationController
         return redirect_to @submission
       end
     else
-      @submission.professor = Professor.new
-      @submission.errors.add(:professor, "email is required") if professor_params[:email].empty?
-      @submission.errors.add(:professor, "name is required") if professor_params[:name].empty?
+      @submission.valid?
+      @professor.valid?
+      @submission.professor = @professor
       professor_success = false
     end
 
