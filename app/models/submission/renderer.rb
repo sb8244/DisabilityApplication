@@ -3,9 +3,9 @@ class Submission::Renderer
   # Yield values for a submission so that they can be formatted in a block
   # This will allow a consistent table pattern throughout the application that is DRY
   def self.render(submission)
-    yield submission.start_time.to_formatted_s(:date)
-    yield submission.start_time.to_formatted_s(:time)
-    yield submission.end_time.to_formatted_s(:time)
+    yield submission.start_time ? submission.start_time.to_formatted_s(:date) : ""
+    yield submission.start_time ? submission.start_time.to_formatted_s(:time) : ""
+    yield submission.end_time ? submission.end_time.to_formatted_s(:time) : ""
     yield laptop(submission)
     yield r_s(submission)
     yield submission.student_name
