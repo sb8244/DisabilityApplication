@@ -1,4 +1,4 @@
-<% Array(model).each do |model| %>
+<% Array(model).reject(&:blank?).each do |model| %>
   <% if model.errors.any? %>
     <div class="errors">
       <% model.errors.full_messages.uniq.each do |msg| %>
