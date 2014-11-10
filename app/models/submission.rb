@@ -24,6 +24,6 @@ class Submission < ActiveRecord::Base
   end
 
   def end_time
-    start_time + student_test_length.minutes
+    start_time ? start_time + student_test_length.minutes : nil
   end
 end
