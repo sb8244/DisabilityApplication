@@ -43,6 +43,7 @@ group :test, :development do
   gem 'selenium-webdriver'
   gem 'capybara'
   gem 'rspec-tag_matchers'
+  gem 'dotenv-rails'
   # database in development/test is sqlite
 end
 
