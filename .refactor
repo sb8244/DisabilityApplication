@@ -1,0 +1,17 @@
+# Models
+  - Move models out into lib and away from DB. They should become purely business oriented
+    - How to handle validations? Is ActiveModel::Validations appropriate?
+    - What about before_saves or equivalent? Should the business logic expose this but not do anything with it?
+
+# Workers
+  - Pull logic out into standalone file? Is the worker acceptable for the business logic area?
+  - These are very simple
+
+# Mailers
+  - Should mailers be in the core lib?
+  - How to handle views and routes to the views?
+
+# Controllers
+  - Controllers should just be collecting data and passing to business object
+  - Is a Request going to become part of a business domain?
+  - What if you could swap out Rails for Sinatra easily?
