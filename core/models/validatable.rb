@@ -1,10 +1,14 @@
-module Validatible
+module Validatable
   def self.included(base)
     base.extend(ClassMethods)
   end
 
   def validator
     @validator ||= self.class.default_validator_class.new(self)
+  end
+
+  def validator=(validator)
+    @validator = validator
   end
 
   def valid?

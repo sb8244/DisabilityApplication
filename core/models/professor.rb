@@ -1,6 +1,6 @@
 class Professor
   include AttributeAssignment
-  include Validatible
+  include Validatable
 
   define_default_validator_class Validator::Professor
 
