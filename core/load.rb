@@ -1,7 +1,10 @@
 require "active_support/all"
 require "active_model"
 
+require_relative "./validator"
+
 require_relative "./models/attribute_assignment"
+require_relative "./models/validatible"
 require_relative "./models/professor"
 require_relative "./models/submission"
 
