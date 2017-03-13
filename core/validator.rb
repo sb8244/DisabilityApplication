@@ -14,3 +14,4 @@ end
 
 require_relative "./validator/professor"
 require_relative "./validator/submission"
+require_relative "./validator/submission_mailing"
