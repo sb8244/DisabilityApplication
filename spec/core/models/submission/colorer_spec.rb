@@ -1,4 +1,4 @@
-require 'spec_helper'
+require "core_helper"
 
 describe Submission::Colorer do
   it "doesn't assign colors when no alike submissions" do
