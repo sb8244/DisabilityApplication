@@ -1,5 +1,5 @@
 class SubmissionFactory
-  def self.get_valid
+  def self.get_valid(professor: ProfessorFactory.get_valid)
     Submission.new(
       student_name: "Student",
       student_email: "student@ship.edu",
@@ -12,7 +12,7 @@ class SubmissionFactory
       reader: false,
       laptop: false,
       scribe: false,
-      professor: ProfessorFactory.get_valid
+      professor: professor
     )
   end
 end

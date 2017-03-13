@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe Submission::Colorer do
   it "doesn't assign colors when no alike submissions" do
-    submission_list = []
-    10.times do
-      submission_list << SubmissionFactory.get_valid
-      submission_list.last.course_number = SecureRandom.hex(20)
+    submission_list = 10.times.map do
+      SubmissionFactory.get_valid.tap do |submission|
+        submission.course_number = SecureRandom.hex(20)
+      end
     end
 
     colorer = Submission::Colorer.new(submission_list)
@@ -14,11 +14,11 @@ describe Submission::Colorer do
   end
 
   it "doesn't assign colors on different dates" do
-    submission_list = []
-    10.times do |index|
-      submission_list << SubmissionFactory.get_valid
-      submission_list.last.professor = submission_list.first.professor
-      submission_list.last.start_time = DateTime.now + index.days
+    professor = ProfessorFactory.get_valid
+    submission_list = 10.times.map do |index|
+      SubmissionFactory.get_valid(professor: professor).tap do |submission|
+        submission.start_time = DateTime.now + index.days
+      end
     end
 
     colorer = Submission::Colorer.new(submission_list)
@@ -28,36 +28,37 @@ describe Submission::Colorer do
 
   it "all same professor and course" do
     submission_list = []
-    10.times do
-      submission = SubmissionFactory.get_valid
-      # All submissions have the same professor and course
-      submission.professor = submission_list.first.professor if submission_list.first
-      submission.course_number = "same"
-      submission_list << submission
+    professor = ProfessorFactory.get_valid
+    submission_list = 10.times.map do |index|
+      SubmissionFactory.get_valid(professor: professor).tap do |submission|
+        submission.course_number = "same"
+      end
     end
 
     colorer = Submission::Colorer.new(submission_list)
     colors = colorer.color
     expected_color = colorer.color_list.first
 
+    expect(colors.values.uniq.count).to eq(1)
     submission_list.each do |submission|
       expect(colors[submission]).to eq(expected_color)
     end
   end
 
   it "repeats same professor and course" do
-    submission_list = []
-    10.times do |index|
-      submission = SubmissionFactory.get_valid
-      # Match submissions professor/course_number up in pairs of 2
-      submission.professor = submission_list[index % 5].professor if submission_list[index % 5]
-      submission.course_number = index % 5
-      submission_list << submission
+    professors = [ProfessorFactory.get_valid, ProfessorFactory.get_valid]
+    submission_list = 10.times.map do |index|
+      SubmissionFactory.get_valid.tap do |submission|
+        # Match submissions professor/course_number up in pairs of 2
+        submission.professor = professors[index % 2]
+        submission.course_number = index % 2
+      end
     end
 
     colorer = Submission::Colorer.new(submission_list)
     colors = colorer.color
 
+    expect(colors.values.uniq.count).to eq(2)
     submission_list.each do |submission|
       expect(colors[submission]).to eq(colorer.color_list[submission.course_number])
     end
