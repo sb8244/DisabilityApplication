@@ -1,5 +1,4 @@
 class Submission::Colorer
-
   def initialize(submissions)
     @submissions = submissions
   end
@@ -50,21 +49,22 @@ class Submission::Colorer
   end
 
   private
-    def next_color
-      if @color_index < color_list.count
-        color = color_list[@color_index]
-      else
-        color = random_color
-      end
-      @color_index += 1
-      color
-    end
 
-    def key(submission)
-      "#{submission.course_number} #{submission.professor.email} #{submission.start_time}"
+  def next_color
+    if @color_index < color_list.count
+      color = color_list[@color_index]
+    else
+      color = random_color
     end
+    @color_index += 1
+    color
+  end
 
-    def random_color
-      "#%02X%02X%02X" % [rand(255/2) + (255/4), rand(255/2) + (255/4), rand(255/2) + (255/4)]
-    end
+  def key(submission)
+    "#{submission.course_number} #{submission.professor.email} #{submission.start_time}"
+  end
+
+  def random_color
+    "#%02X%02X%02X" % [rand(255/2) + (255/4), rand(255/2) + (255/4), rand(255/2) + (255/4)]
+  end
 end
