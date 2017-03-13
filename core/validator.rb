@@ -13,6 +13,4 @@ class Validator
 end
 
 require_relative "./validator/type_of_validator"
-require_relative "./validator/professor"
-require_relative "./validator/submission"
-require_relative "./validator/submission_mailing"
+Dir[File.join(File.dirname(__FILE__), 'validator', '*.rb')].each {|file| require file }

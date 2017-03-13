@@ -3,11 +3,7 @@ require "active_model"
 
 require_relative "./validator"
 
-require_relative "./models/mixins/attribute_assignment"
-require_relative "./models/mixins/validatable"
-
-require_relative "./models/professor"
-require_relative "./models/submission"
-require_relative "./models/submission_mailing"
+Dir[File.join(File.dirname(__FILE__), 'models', 'mixins', '*.rb')].each {|file| require file }
+Dir[File.join(File.dirname(__FILE__), 'models', '*.rb')].each {|file| require file }
 
 I18n.enforce_available_locales = false
