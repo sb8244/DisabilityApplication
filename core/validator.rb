@@ -12,6 +12,7 @@ class Validator
   end
 end
 
+require_relative "./validator/type_of_validator"
 require_relative "./validator/professor"
 require_relative "./validator/submission"
 require_relative "./validator/submission_mailing"

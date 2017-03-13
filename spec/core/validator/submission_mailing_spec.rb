@@ -27,6 +27,9 @@ RSpec.describe Validator::SubmissionMailing do
     it "requires a submission" do
       subject.submission = nil
       expect(subject).not_to be_valid
+
+      subject.submission = "nope"
+      expect(subject).not_to be_valid
     end
   end
 end

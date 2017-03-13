@@ -14,7 +14,7 @@ RSpec.describe Validator::Submission do
       reader: false,
       laptop: false,
       scribe: false,
-      professor: Professor.new
+      professor: ProfessorFactory.get_valid
     )
   end
 
@@ -62,6 +62,12 @@ RSpec.describe Validator::Submission do
         subject.send("#{boolean_attribute}=", "junk")
         expect(subject).not_to be_valid
       end
+    end
+
+    it "requires a Professor object" do
+      subject.professor = "nope"
+      expect(subject).not_to be_valid
+      expect(subject.errors.messages[:professor]).to eq(["is an invalid type"])
     end
   end
 end

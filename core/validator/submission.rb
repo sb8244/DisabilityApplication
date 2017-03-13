@@ -1,7 +1,7 @@
 class Validator::Submission < Validator
   validates :student_name, presence: true
   validates :student_email, presence: true,
-            email_format: { message: 'is not an email' }
+                            email_format: { message: 'is not an email' }
   validates :course_number, presence: true
   validates :exam_pickup, presence: true
   validates :exam_return, presence: true
@@ -10,4 +10,6 @@ class Validator::Submission < Validator
   validates :reader, inclusion: { in: [true, false] }
   validates :scribe, inclusion: { in: [true, false] }
   validates :laptop, inclusion: { in: [true, false] }
+  validates :professor, presence: true,
+                        type_of: { klass_name: "Professor" }
 end
