@@ -13,8 +13,11 @@ end
 class ProfessorListRequest < Request
   def call
     authorized!
-    View.new(professors: ProfessorRepository.all)
+    professors = ProfessorRepository.all(like_name: params[:name], like_email: params[:email])
+    View.new(professors: professors)
   end
+
+  private
 end
 
 RSpec.describe ProfessorListRequest do
@@ -42,14 +45,21 @@ RSpec.describe ProfessorListRequest do
     describe "without any params" do
       it "returns a view containing all professors" do
         professors = [ProfessorFactory.get_valid, ProfessorFactory.get_valid]
-        expect(test_adapter).to receive(:all).once.and_return(professors)
+        expect(test_adapter).to receive(:all).with.once.and_return(professors)
         view = subject.call
         expect(view.professors).to eq(professors)
       end
     end
 
     describe "with name param" do
-      it "fetches professors like that name"
+      let(:params) { { name: 'test' } }
+
+      it "fetches professors like that name" do
+        professors = [ProfessorFactory.get_valid, ProfessorFactory.get_valid]
+        expect(test_adapter).to receive(:all).once.and_return(professors)
+        view = subject.call
+        expect(view.professors).to eq(professors)
+      end
     end
 
     describe "with email param" do
