@@ -9,5 +9,6 @@ Dir[File.join(File.dirname(__FILE__), 'models', '**', '*.rb')].each { |file| req
 
 Dir[File.join(File.dirname(__FILE__), 'repository', '**', '*.rb')].each { |file| require file }
 Dir[File.join(File.dirname(__FILE__), 'request', '**', '*.rb')].each { |file| require file }
+Dir[File.join(File.dirname(__FILE__), 'requests', '**', '*.rb')].each { |file| require file }
 
 I18n.enforce_available_locales = false

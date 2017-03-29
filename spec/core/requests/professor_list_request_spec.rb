@@ -1,25 +1,5 @@
 require "core_helper"
 
-class View
-  def initialize(attributes = {})
-    @attributes = attributes
-  end
-
-  def method_missing(method, *args)
-    @attributes[method] unless method.to_s.include?('=')
-  end
-end
-
-class ProfessorListRequest < Request
-  def call
-    authorized!
-    professors = ProfessorRepository.all(like_name: params[:name], like_email: params[:email])
-    View.new(professors: professors)
-  end
-
-  private
-end
-
 RSpec.describe ProfessorListRequest do
   describe "without an authorized session" do
     subject do
