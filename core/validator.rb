@@ -12,5 +12,5 @@ class Validator
   end
 end
 
-require_relative "./validator/type_of_validator"
-Dir[File.join(File.dirname(__FILE__), 'validator', '*.rb')].each {|file| require file }
+require_relative "./validators/type_of_validator"
+Dir[File.join(File.dirname(__FILE__), 'validators', '*.rb')].each {|file| require file }
