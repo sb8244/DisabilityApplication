@@ -16,11 +16,18 @@ module TestAdapterMixin
   end
 end
 
+class ProfessorQueries < ProfessorRepository::Queries
+  def like_name(name)
+    lambda { |r| r }
+  end
+
+  def like_email(email)
+    lambda { |r| r }
+  end
+end
+
 ProfessorRepository.set_adapter($adapter_instance)
-ProfessorRepository.set_queries({
-  like_name: lambda { |name| lambda { |a| a } },
-  like_email: lambda { |email| lambda { |a| a } }
-})
+ProfessorRepository.set_queries(ProfessorQueries.new)
 
 RSpec.configure do |config|
   config.include TestAdapterMixin
