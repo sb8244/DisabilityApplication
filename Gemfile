@@ -38,13 +38,17 @@ group :doc do
 end
 
 group :test, :development do
-  gem 'rspec-rails'
   gem 'shoulda'
   gem 'selenium-webdriver'
   gem 'capybara'
   gem 'rspec-tag_matchers'
   gem 'dotenv-rails'
   # database in development/test is sqlite
+end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'rspec-mocks'
 end
 
 group :development do
