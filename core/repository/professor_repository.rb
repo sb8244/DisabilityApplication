@@ -1,18 +1,4 @@
-class ProfessorRepository
-  def self.set_adapter(adapter)
-    raise if @adapter.present?
-    @adapter = adapter
-  end
-
-  def self.set_queries(queries)
-    raise if @queries.present?
-    @queries = queries
-  end
-
-  def self.get_queries
-    @queries
-  end
-
+class ProfessorRepository < Repository
   def self.all(like_name: nil, like_email: nil)
     queries = []
     queries << @queries.like_name(like_name) unless like_name.nil?
