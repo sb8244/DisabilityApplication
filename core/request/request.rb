@@ -8,6 +8,7 @@ class Request
   end
 
   def call
+    authorized!
     request
     response
   end

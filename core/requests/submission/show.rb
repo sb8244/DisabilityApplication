@@ -1,7 +1,5 @@
 class SubmissionShowRequest < Request
   def request
-    authorized!
-
     if submission
       response.view = OpenStruct.new(submission: submission)
     else
