@@ -6,6 +6,9 @@ Dir[File.join(File.dirname(__FILE__), 'core', 'factories', '*.rb')].each {|file|
 class TestAdapter
   def all
   end
+
+  def one(id)
+  end
 end
 
 $adapter_instance = TestAdapter.new
@@ -27,6 +30,7 @@ class ProfessorQueries < ProfessorRepository::Queries
 end
 
 ProfessorRepository.set_adapter($adapter_instance)
+SubmissionRepository.set_adapter($adapter_instance)
 ProfessorRepository.set_queries(ProfessorQueries.new)
 
 RSpec.configure do |config|

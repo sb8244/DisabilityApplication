@@ -1,9 +1,9 @@
 class Response
-  ERROR_STATUSES = [:invalid_data]
+  ERROR_STATUSES = [:invalid_data, :not_found]
   SUCCESS_STATUSES = [:success]
 
   attr_accessor :view
-  attr_reader :error_reason
+  attr_reader :error_reason, :status
 
   def initialize
     @status = :success
