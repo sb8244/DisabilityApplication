@@ -1,7 +1,7 @@
 class ProfessorListRequest < Request
-  def call
+  def request
     authorized!
     professors = ProfessorRepository.all(like_name: params[:name], like_email: params[:email])
-    View.new(professors: professors)
+    response.view = View.new(professors: professors)
   end
 end

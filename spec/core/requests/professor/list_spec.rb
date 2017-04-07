@@ -23,11 +23,12 @@ RSpec.describe ProfessorListRequest do
     end
 
     describe "without any params" do
-      it "returns a view containing all professors" do
+      it "returns a successful response containing all professors" do
         professors = [ProfessorFactory.get_valid, ProfessorFactory.get_valid]
         expect(ProfessorRepository).to receive(:all).with(like_name: nil, like_email: nil).once.and_return(professors)
-        view = subject.call
-        expect(view.professors).to eq(professors)
+        response = subject.call
+        expect(response.success?).to eq(true)
+        expect(response.view.professors).to eq(professors)
       end
     end
 
@@ -37,8 +38,9 @@ RSpec.describe ProfessorListRequest do
       it "fetches professors like that name" do
         professors = [ProfessorFactory.get_valid, ProfessorFactory.get_valid]
         expect(ProfessorRepository).to receive(:all).with(like_name: 'test', like_email: nil).once.and_return(professors)
-        view = subject.call
-        expect(view.professors).to eq(professors)
+        response = subject.call
+        expect(response.success?).to eq(true)
+        expect(response.view.professors).to eq(professors)
       end
     end
 
@@ -48,8 +50,9 @@ RSpec.describe ProfessorListRequest do
       it "fetches professors like that email" do
         professors = [ProfessorFactory.get_valid, ProfessorFactory.get_valid]
         expect(ProfessorRepository).to receive(:all).with(like_name: nil, like_email: 'test@t').once.and_return(professors)
-        view = subject.call
-        expect(view.professors).to eq(professors)
+        response = subject.call
+        expect(response.success?).to eq(true)
+        expect(response.view.professors).to eq(professors)
       end
     end
   end
