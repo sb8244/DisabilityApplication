@@ -16,10 +16,4 @@ class ProfessorsController < ApplicationController
       format.html
     end
   end
-
-  private
-    def professor_params
-      params.require(:professor).permit(:name, :email)
-    end
-
 end
