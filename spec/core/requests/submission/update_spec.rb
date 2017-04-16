@@ -10,7 +10,7 @@ RSpec.describe SubmissionUpdateRequest do
     it "looks up the submission by id" do
       allow(SubmissionRepository).to receive(:save).and_return(true)
       allow(ProfessorRepository).to receive(:one).and_return(Professor.new)
-      mock_submission = Submission.new
+      mock_submission = SubmissionFactory.get_valid
       expect(SubmissionRepository).to receive(:one).once.with(1).and_return(mock_submission)
       response = get_request(id: 1, professor: { email: "test@test.edu" }, submission: {}).call
 
@@ -19,7 +19,7 @@ RSpec.describe SubmissionUpdateRequest do
     end
 
     it "sets the submission professor based on their email" do
-      submission = Submission.new
+      submission = SubmissionFactory.get_valid
       professor = Professor.new
       expect(SubmissionRepository).to receive(:one).once.with(1).and_return(submission)
       expect(ProfessorRepository).to receive(:one).once.with(email: "test@test.edu").and_return(professor)
@@ -31,7 +31,7 @@ RSpec.describe SubmissionUpdateRequest do
     end
 
     it "creates a new professor if one isn't found by email" do
-      submission = Submission.new
+      submission = SubmissionFactory.get_valid
       professor = Professor.new
       expect(SubmissionRepository).to receive(:one).once.with(1).and_return(submission)
       expect(ProfessorRepository).to receive(:one).once.with(email: "test@test.edu").and_return(nil)
@@ -77,15 +77,15 @@ RSpec.describe SubmissionUpdateRequest do
 
     context "with a failed submission save" do
       it "errors the request as invalid_data" do
+        mock_submission = SubmissionFactory.get_valid
         allow(SubmissionRepository).to receive(:save).and_return(false)
         allow(ProfessorRepository).to receive(:one).and_return(Professor.new)
-        mock_submission = Submission.new
         expect(SubmissionRepository).to receive(:one).once.with(1).and_return(mock_submission)
-        response = get_request(id: 1, professor: { email: "test@test.edu" }, submission: {}).call
+        response = get_request(id: 1, professor: { email: "test@test.edu" }, submission: { student_email: "no" }).call
 
         expect(response.error?).to eq(true)
         expect(response.status).to eq(:invalid_data)
-        expect(response.view).to eq(nil)
+        expect(response.view.errors).to eq(submission: ["Student email is not an email"])
       end
     end
 

@@ -2,18 +2,17 @@ class SubmissionUpdateRequest < Request
   def request
     if submission
       submission.professor = professor
-
-      if update_submission
-        response.view = OpenStruct.new(submission: submission)
-      else
-        response.set_error(type: :invalid_data)
-      end
+      update_submission
+      response.view = OpenStruct.new(submission: submission)
     else
       response.set_error(type: :not_found)
     end
   rescue InvalidProfessorError => e
     response.set_error(type: :invalid_data, reason: "Professor is invalid")
     response.view = OpenStruct.new(errors: { professor: e.validation_errors })
+  rescue InvalidSubmissionError => e
+    response.set_error(type: :invalid_data, reason: "Submission is invalid")
+    response.view = OpenStruct.new(errors: { submission: e.validation_errors })
   end
 
   private
@@ -24,6 +23,7 @@ class SubmissionUpdateRequest < Request
 
   def update_submission
     submission.assign_attributes(submission_params)
+    raise InvalidSubmissionError.new(submission.full_error_messages) unless submission.valid?
     SubmissionRepository.save(submission)
   end
 
@@ -59,6 +59,15 @@ class SubmissionUpdateRequest < Request
 
     def initialize(validation_errors)
       super("Professor is not valid #{validation_errors}")
+      @validation_errors = validation_errors
+    end
+  end
+
+  class InvalidSubmissionError < StandardError
+    attr_reader :validation_errors
+
+    def initialize(validation_errors)
+      super("Submission is not valid #{validation_errors}")
       @validation_errors = validation_errors
     end
   end
