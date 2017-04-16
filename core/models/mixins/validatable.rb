@@ -19,6 +19,10 @@ module Validatable
     validator.errors
   end
 
+  def full_error_messages
+    errors.full_messages
+  end
+
   module ClassMethods
     def define_default_validator_class(klass)
       @default_validator_class = klass

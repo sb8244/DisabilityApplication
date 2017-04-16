@@ -37,7 +37,7 @@ RSpec.describe SubmissionUpdateRequest do
       expect(ProfessorRepository).to receive(:one).once.with(email: "test@test.edu").and_return(nil)
       expect(ProfessorRepository).to receive(:create).once.with(instance_of(Professor)).and_return(professor)
       expect(SubmissionRepository).to receive(:save).once.with(submission).and_return(true)
-      response = get_request(id: 1, professor: { email: "test@test.edu" }, submission: {}).call
+      response = get_request(id: 1, professor: { email: "test@test.edu", name: "test" }, submission: {}).call
 
       expect(response.success?).to eq(true)
       expect(response.view.submission.professor).to eq(professor)
@@ -65,8 +65,7 @@ RSpec.describe SubmissionUpdateRequest do
       submission = Submission.new
       professor = Professor.new
       expect(SubmissionRepository).to receive(:one).once.with(1).and_return(submission)
-      expect(ProfessorRepository).to receive(:one).once.with(email: "test@test.edu").and_return(nil)
-      expect(ProfessorRepository).to receive(:create).once.with(instance_of(Professor)).and_return(professor)
+      expect(ProfessorRepository).to receive(:one).once.with(email: "test@test.edu").and_return(professor)
       expect(SubmissionRepository).to receive(:save).once.with(submission).and_return(true)
 
       response = get_request(id: 1, professor: { email: "test@test.edu" }, submission: all_params).call
@@ -76,7 +75,7 @@ RSpec.describe SubmissionUpdateRequest do
       end
     end
 
-    context "with a failed save" do
+    context "with a failed submission save" do
       it "errors the request as invalid_data" do
         allow(SubmissionRepository).to receive(:save).and_return(false)
         allow(ProfessorRepository).to receive(:one).and_return(Professor.new)
@@ -90,7 +89,23 @@ RSpec.describe SubmissionUpdateRequest do
       end
     end
 
-    describe "with a not found model" do
+    context "with a failed professor creation" do
+      it "sets an error for the required params" do
+        expect(SubmissionRepository).to receive(:one).once.with(1).and_return(Submission.new)
+        response = get_request(id: 1, professor: {}, submission: {}).call
+        expect(response.error?).to eq(true)
+        expect(response.view.errors).to eq(professor: ["Name can't be blank", "Email can't be blank", "Email is not an email"])
+      end
+
+      it "sets an error when email is invalid" do
+        expect(SubmissionRepository).to receive(:one).once.with(1).and_return(Submission.new)
+        response = get_request(id: 1, professor: { name: "Test", email: "t" }, submission: {}).call
+        expect(response.error?).to eq(true)
+        expect(response.view.errors).to eq(professor: ["Email is not an email"])
+      end
+    end
+
+    describe "with a not found submission" do
       it "errors the request as not_found" do
         expect(SubmissionRepository).to receive(:one).once.with(1).and_return(nil)
         response = get_request(id: 1).call

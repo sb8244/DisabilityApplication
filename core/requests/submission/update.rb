@@ -11,6 +11,9 @@ class SubmissionUpdateRequest < Request
     else
       response.set_error(type: :not_found)
     end
+  rescue InvalidProfessorError => e
+    response.set_error(type: :invalid_data, reason: "Professor is invalid")
+    response.view = OpenStruct.new(errors: { professor: e.validation_errors })
   end
 
   private
@@ -41,11 +44,22 @@ class SubmissionUpdateRequest < Request
   end
 
   def find_professor
+    return unless professor_params[:email].present?
     ProfessorRepository.one(email: professor_params.fetch(:email))
   end
 
   def create_professor
-    professor = Professor.new(name: professor_params[:name], email: professor_params.fetch(:email))
+    professor = Professor.new(name: professor_params[:name], email: professor_params[:email])
+    raise InvalidProfessorError.new(professor.full_error_messages) unless professor.valid?
     ProfessorRepository.create(professor)
+  end
+
+  class InvalidProfessorError < StandardError
+    attr_reader :validation_errors
+
+    def initialize(validation_errors)
+      super("Professor is not valid #{validation_errors}")
+      @validation_errors = validation_errors
+    end
   end
 end
