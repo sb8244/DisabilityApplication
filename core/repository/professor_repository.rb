@@ -8,6 +8,12 @@ class ProfessorRepository < Repository
     end
   end
 
+  def self.one(email: nil)
+    query = {}
+    query[:email] = email if email.present?
+    @adapter.one(query)
+  end
+
   class Queries
     def like_name(name) ; raise NotImplementError ; end
     def like_email(email) ; raise NotImplementError ; end

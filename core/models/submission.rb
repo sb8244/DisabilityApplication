@@ -5,7 +5,8 @@ class Submission
   define_default_validator_class Validator::Submission
 
   attr_accessor :student_name, :student_email, :course_number, :start_time, :actual_test_length,
-                :student_test_length, :exam_pickup, :exam_return, :reader, :laptop, :scribe, :professor
+                :student_test_length, :exam_pickup, :exam_return, :reader, :laptop, :scribe, :professor,
+                :no_show, :extended, :cancelled, :laptop_reason
 
   def initialize(attributes = {})
     assign_attributes(attributes)
