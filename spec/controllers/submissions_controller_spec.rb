@@ -49,7 +49,7 @@ describe SubmissionsController do
     it { should have_input.for(:submission => :laptop) }
     it { should have_input.for('submission[professor]' => :name) }
     it { should have_input.for('submission[professor]' => :email) }
-    it { should have_selector("input[type='submit']") } 
+    it { should have_selector("input[type='submit']") }
     it { should_not have_selector(".errors") }
 
     it "should display errors if any" do
@@ -67,7 +67,7 @@ describe SubmissionsController do
     let(:professor_attributes) { { professor: FactoryGirl.attributes_for(:professor) } }
     before { FactoryGirl.create(:submission) }
 
-    context "with valid params" do 
+    context "with valid params" do
       before(:each) do
         put :update, { id: submission, submission: submission.attributes.merge(professor_attributes) }
       end
@@ -116,7 +116,7 @@ describe SubmissionsController do
   describe 'POST :reschedule' do
     let!(:submission) { FactoryGirl.create(:submission) }
     it "cancels the submission" do
-      expect{ 
+      expect{
         post :reschedule, id: submission.id
         submission.reload
       }.to change{ submission.cancelled? }.from(false).to(true)
@@ -168,6 +168,15 @@ describe SubmissionsController do
     it "adds 2 mail records" do
       post :create, submission: submission_attributes(submission)
       expect(Submission.last.mail_records.count).to eq(2)
+    end
+
+    it "creates an electronic accessed submission" do
+      exam_return = "Submit electronically (e.g., D2L)"
+      exam_pickup = "Accessed electronically (e.g., D2L)"
+      expect {
+        post :create, submission: submission_attributes(submission).merge(exam_return: exam_return, exam_pickup: exam_pickup)
+      }.to change{ Submission.count }.by(1)
+      expect(Submission.last.attributes).to include("exam_return" => exam_return, "exam_pickup" => exam_pickup)
     end
   end
 

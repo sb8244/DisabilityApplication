@@ -8,7 +8,7 @@
     <div class='form-controls'>
       <%= f.label :start_time %>
       <% if @submission.start_time %>
-      <%= text_field_tag "submission[start_time]", @submission.start_time.to_s(:db_no_seconds), 
+      <%= text_field_tag "submission[start_time]", @submission.start_time.to_s(:db_no_seconds),
                           class: 'form-control', id: "submission_start_time" %>
       <% else %>
         <%= f.text_field :start_time, class: 'form-control' %>
@@ -32,30 +32,54 @@
 
     <%= field_set_tag 'Exam Pickup Method', class: 'pull-left width_50' do %>
       <div class='form-controls'>
-        <%= f.radio_button :exam_pickup, "Professor Dropoff" %>
-        <%= label_tag "Professor Dropoff" %>
+        <%= label_tag do %>
+          <%= f.radio_button :exam_pickup, "Professor Dropoff" %>
+          Professor Dropoff
+        <% end %>
       </div>
 
       <div class='form-controls'>
-        <%= f.radio_button :exam_pickup, "Student Dropoff" %>
-        <%= label_tag "Student Dropoff" %>
+        <%= label_tag do %>
+          <%= f.radio_button :exam_pickup, "Student Dropoff" %>
+          Student Dropoff
+        <% end %>
       </div>
 
       <div class='form-controls'>
-        <%= f.radio_button :exam_pickup, "Professor Email" %>
-        <%= label_tag "Professor Email" %>
+        <%= label_tag do %>
+          <%= f.radio_button :exam_pickup, "Professor Email" %>
+          Professor Email
+        <% end %>
+      </div>
+
+      <div class='form-controls'>
+        <%= label_tag do %>
+          <%= f.radio_button :exam_pickup, "Accessed electronically (e.g., D2L)" %>
+          Accessed electronically (e.g., D2L)
+        <% end %>
       </div>
     <% end %>
 
     <%= field_set_tag 'Exam Return Method' do %>
       <div class='form-controls'>
-        <%= f.radio_button :exam_return, "Professor Pickup" %>
-        <%= label_tag "Professor Pickup" %>
+        <%= label_tag do %>
+          <%= f.radio_button :exam_return, "Professor Pickup" %>
+          Professor Pickup
+        <% end %>
       </div>
 
       <div class='form-controls'>
-        <%= f.radio_button :exam_return, "Student Pickup" %>
-        <%= label_tag "Student Pickup" %>
+        <%= label_tag do %>
+          <%= f.radio_button :exam_return, "Student Pickup" %>
+          Student Pickup
+        <% end %>
+      </div>
+
+      <div class='form-controls'>
+        <%= label_tag do %>
+          <%= f.radio_button :exam_return, "Submit electronically (e.g., D2L)" %>
+          Submit electronically (e.g., D2L)
+        <% end %>
       </div>
     <% end %>
 
