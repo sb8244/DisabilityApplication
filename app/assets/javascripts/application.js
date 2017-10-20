@@ -22,10 +22,10 @@
 //= require_tree .
 
 $(function() {
-
+  // See https://www.datatables.net/upgrade/1.10-convert for information on parameters
   $('.datatable').dataTable({
     sPaginationType: "bootstrap",
-    aaSorting:[]
+    aaSorting:[],
+    iDisplayLength: 50
   });
-
 });
